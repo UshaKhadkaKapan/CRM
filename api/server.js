@@ -7,14 +7,20 @@ const PORT = process.env.PORT || 8000;
 
 // use middleware
 app.use(helmet());
-app.use(morgan("dev"));
+app.use(morgan("tiny"));
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.json({
-    message: "you reach a e-commerce api",
+// connect to db
+import { mongoConnect } from "./src/config/dbConfig.js";
+mongoConnect();
+// api
+import registerLoginRouter from "./src/routers/registerLoginRouter.js";
+app.use("/api/v1/register-login", registerLoginRouter),
+  app.get("/", (req, res) => {
+    res.json({
+      message: "you reach a e-commerce api",
+    });
   });
-});
 
 app.use((error, req, res) => {
   console.log(error);
