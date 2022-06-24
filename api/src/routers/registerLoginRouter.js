@@ -11,9 +11,14 @@ route.post("/", adminRegistrationValidation, async (req, res, next) => {
     const result = await createNewAdmin(req.body);
     console.log(result);
     res.json({
-      message: "todo",
+      status: "success",
+      message: "We have sent you an email,please follow the step",
     });
   } catch (error) {
+    if (error.message.includes("E11000 duplicate key error collection")) {
+      error.status = 200;
+      error.message = "email already exist";
+    }
     next(error);
   }
 
