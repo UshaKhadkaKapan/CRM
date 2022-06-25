@@ -1,15 +1,29 @@
 import express from "express";
 import { hashPassword } from "../helpers/bcryptHelper.js";
 import { adminRegistrationValidation } from "../middlewares/validationMiddleware.js";
-import { createNewAdmin } from "../models/adminUser/AdminModel.js";
+import {
+  addVerificationCodeByUserId,
+  createNewAdmin,
+} from "../models/adminUser/AdminModel.js";
+import { v4 as uuidv4 } from "uuid";
 const route = express.Router();
 
 route.post("/", adminRegistrationValidation, async (req, res, next) => {
   try {
     req.body.password = hashPassword(req.body.password);
+    const verification = uuidv4();
+    req.body.verificationCode = verification;
 
     const result = await createNewAdmin(req.body);
     console.log(result);
+
+    if (result?._id) {
+      console.log(result);
+      return res.json({
+        status: "success",
+        message: "We have sent you verification",
+      });
+    }
     res.json({
       status: "success",
       message: "We have sent you an email,please follow the step",

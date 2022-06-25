@@ -6,11 +6,11 @@ export const adminRegistrationValidation = (req, res, next) => {
   const schema = Joi.object({
     fName: Joi.string().min(3).max(50).required(),
     lName: Joi.string().min(3).max(50).required(),
-    DOB: Joi.date(),
+    dob: Joi.date().allow(null, "").required(),
     phone: Joi.string().min(3).max(50).required(),
-    email: Joi.string().email({ minDomainSegments: 2 }).max(30),
+    email: Joi.string().email({ minDomainSegments: 2 }).max(30).required(),
     password: Joi.string().min(3).max(50).required(),
-    address: Joi.string().allow("").max(50),
+    address: Joi.string().allow("").max(50).required(),
   });
 
   const { error, value } = schema.validate(req.body);

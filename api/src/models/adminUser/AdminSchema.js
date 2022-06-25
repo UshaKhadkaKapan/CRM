@@ -34,12 +34,16 @@ const AdminSchema = new mongoose.Schema(
       required: true,
       maxLength: 100,
     },
-    DOB: {
+    dob: {
       type: Date,
       required: true,
       default: null,
     },
     Address: {
+      type: String,
+      maxLength: 50,
+    },
+    verificationCode: {
       type: String,
       maxLength: 50,
     },
