@@ -6,6 +6,7 @@ import {
   createNewAdmin,
 } from "../models/adminUser/AdminModel.js";
 import { v4 as uuidv4 } from "uuid";
+import { sendAdminUserVerificationMail } from "../helpers/emailHelper.js";
 const route = express.Router();
 
 route.post("/", adminRegistrationValidation, async (req, res, next) => {
@@ -19,6 +20,7 @@ route.post("/", adminRegistrationValidation, async (req, res, next) => {
 
     if (result?._id) {
       console.log(result);
+      sendAdminUserVerificationMail(result);
       return res.json({
         status: "success",
         message: "We have sent you verification",
