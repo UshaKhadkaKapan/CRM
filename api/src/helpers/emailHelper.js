@@ -28,11 +28,11 @@ const sendMail = async (emailInfo) => {
 };
 
 export const sendAdminUserVerificationMail = (userObj) => {
-  const link = `${process.env.DOMAIN}/admin-verification?e+${userObj.email}&c=${userObj.verificationCode}`;
-  "http://localhost:3000/admin-verification?email=" +
-    userObj.email +
-    "&c=" +
-    userObj.verificationCode;
+  const link = `${process.env.DOMAIN}/admin-verification?e=${userObj.email}&c=${userObj.verificationCode}`;
+  // "http://localhost:3000/admin-verification?email=" +
+  //   userObj.email +
+  //   "&c=" +
+  //   userObj.verificationCode;
   const emailInfo = {
     from: '"ABC store" ' + process.env.MAIL_USER,
     to: userObj.email, // list of receivers

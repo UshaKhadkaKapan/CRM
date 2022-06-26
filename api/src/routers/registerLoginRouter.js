@@ -47,14 +47,14 @@ route.post("/", adminRegistrationValidation, async (req, res, next) => {
 route.patch("/", async (req, res, next) => {
   try {
     const { email, verificationCode } = req.body;
-    if (email && !verificationCode) {
+    if (email && verificationCode) {
       const filter = { email, verificationCode };
       const obj = {
         status: "active",
         verificationCode: "",
       };
 
-      const result = await updateAdmin(filter);
+      const result = await updateAdmin(filter, obj);
 
       if (result?._id) {
         return res.json({
