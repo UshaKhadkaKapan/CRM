@@ -13,3 +13,8 @@ export const addVerificationCodeByUserId = (id, verificationCode) => {
     verificationCode,
   });
 };
+
+// @filter must be object like email and password
+export const getOndAdmin = (filter) => {
+  return AdminSchema.findOne(filter);
+};

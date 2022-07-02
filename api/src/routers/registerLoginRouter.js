@@ -1,9 +1,13 @@
 import express, { Router } from "express";
-import { hashPassword } from "../helpers/bcryptHelper.js";
-import { adminRegistrationValidation } from "../middlewares/validationMiddleware.js";
+import { comparePassword, hashPassword } from "../helpers/bcryptHelper.js";
+import {
+  adminRegistrationValidation,
+  loginValidation,
+} from "../middlewares/validationMiddleware.js";
 import {
   addVerificationCodeByUserId,
   createNewAdmin,
+  getOndAdmin,
   updateAdmin,
 } from "../models/adminUser/AdminModel.js";
 import { v4 as uuidv4 } from "uuid";
@@ -70,6 +74,37 @@ route.patch("/", async (req, res, next) => {
     });
 
     console.log(req.body);
+  } catch (error) {
+    next(error);
+  }
+});
+
+// admin user login
+route.post("/login", loginValidation, async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    const result = await getOndAdmin({ email });
+
+    if (result?._id) {
+      const isMatch = comparePassword(password, result.password);
+      result.password = undefined;
+      if (isMatch) {
+        return result.status === "active"
+          ? res.json({
+              status: "success",
+              message: "Login success",
+              result,
+            })
+          : res.json({
+              status: "error",
+              message: "Your account is invalid",
+            });
+      }
+    }
+    res.json({
+      status: "error",
+      message: "Invalid creditential",
+    });
   } catch (error) {
     next(error);
   }

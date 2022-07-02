@@ -23,3 +23,22 @@ export const adminRegistrationValidation = (req, res, next) => {
 
   next();
 };
+
+export const loginValidation = (req, res, next) => {
+  console.log(req.body);
+
+  const schema = Joi.object({
+    email: Joi.string().email({ minDomainSegments: 2 }).max(30).required(),
+    password: Joi.string().min(3).max(50).required(),
+  });
+
+  const { error, value } = schema.validate(req.body);
+  if (error) {
+    return res.json({
+      status: "error",
+      message: error.message,
+    });
+  }
+
+  next();
+};

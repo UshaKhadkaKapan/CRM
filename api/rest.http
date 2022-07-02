@@ -27,3 +27,13 @@ Content-Type: application/json
     "verificationCode":"a43c6bd3-dde3-40eb-8c43-e7a086cdc070"
 
 }
+
+
+### admin login
+POST http://localhost:8000/api/v1/register-login/login
+Content-Type: application/json
+
+{
+    "email":"Khadkausha83@gmail.com",
+    "password":"123456"
+}
