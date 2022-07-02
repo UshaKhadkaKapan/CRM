@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
+import { loginAction } from "../pages/login-registration/loginRegisterAction";
+import { useDispatch } from "react-redux/es/hooks/useDispatch";
 
 const LoginForm = () => {
+  const dispatch = useDispatch();
   const [form, setForm] = useState({});
 
   const handleOnChange = (e) => {
@@ -12,6 +15,7 @@ const LoginForm = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     console.log(form);
+    dispatch(loginAction(form));
   };
 
   return (
