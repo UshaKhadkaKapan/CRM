@@ -17,18 +17,20 @@ import { mongoConnect } from "./src/config/dbConfig.js";
 mongoConnect();
 // api
 import registerLoginRouter from "./src/routers/registerLoginRouter.js";
+import categoriesRouter from "./src/routers/categoriesRouter.js";
 app.use("/api/v1/register-login", registerLoginRouter),
-  app.get("/", (req, res) => {
-    res.json({
-      message: "you reach a e-commerce api",
-    });
+  app.use("/api/v1/category", categoriesRouter);
+app.get("/", (req, res) => {
+  res.json({
+    message: "you reach a e-commerce api",
   });
+});
 
 app.use((error, req, res, next) => {
   console.log(error);
   const status = error.status || 404;
   res.json(status).json({
-    status: "error",
+    status: "error server",
     message: error.message,
   });
 });

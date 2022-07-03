@@ -42,3 +42,20 @@ export const loginValidation = (req, res, next) => {
 
   next();
 };
+
+export const categoryValidation = (req, res, next) => {
+  const schema = Joi.object({
+    status: Joi.string().min(3).max(50).required(),
+    name: Joi.string().min(3).max(50).required(),
+    parentCatId: Joi.string().allow(null, ""),
+  });
+
+  const { error, value } = schema.validate(req.body);
+  if (error) {
+    return res.json({
+      status: "error",
+      message: error.message,
+    });
+  }
+  next();
+};
