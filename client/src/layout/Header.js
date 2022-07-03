@@ -3,11 +3,21 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import React from "react";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { toggleShowSideMenu } from "../pages/system-state/SystemSlice";
 function Header() {
+  const dispatch = useDispatch();
   return (
     <Navbar bg="info" expand="lg">
       <Container>
-        <Navbar.Brand href="#home">Admin CMS</Navbar.Brand>
+        <Navbar.Brand href="#">
+          {" "}
+          <i
+            class="fa-solid fa-bars"
+            onClick={() => dispatch(toggleShowSideMenu())}
+          ></i>{" "}
+          CMS admin
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
