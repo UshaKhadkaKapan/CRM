@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/login-registration/Login";
 import Registeration from "./pages/login-registration/Registeration";
 import Emailverification from "./pages/login-registration/Emailverification";
+import DashBoard from "./pages/dashboard/DashBoard";
 
 const App = () => {
   return (
@@ -15,6 +16,9 @@ const App = () => {
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Registeration />} />
           <Route path="/admin-verification" element={<Emailverification />} />
+
+          {/* private routes TODO */}
+          <Route path="/dashboard" element={<DashBoard />} />
         </Routes>
       </BrowserRouter>
       <ToastContainer theme="dark" />

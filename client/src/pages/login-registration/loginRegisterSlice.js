@@ -7,7 +7,7 @@ const initialState = {
 const loginRegisterSlice = createSlice({
   name: "loginRegister",
   initialState,
-  reducer: {
+  reducers: {
     setUser: (state, { payload }) => {
       state.user = payload;
     },

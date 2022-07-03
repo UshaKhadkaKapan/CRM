@@ -17,5 +17,5 @@ export const loginAction = (obj) => async (dispatch) => {
   console.log(result);
   // show toastify message , success or error
   // if response comes succes them call setUser and pass the user data
-  result.status === "success" && dispatch(setUser(result.result));
+  status === "success" && dispatch(setUser(result));
 };
