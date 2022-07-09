@@ -3,6 +3,10 @@ GET http://localhost:8000
 
 # ======= Admin registration and login
 
+
+### fetch categories
+GET http://localhost:8000/api/v1/category/62c124f769b318838710e454
+
 ### Admin user registration
 POST http://localhost:8000/api/v1/register-login
 Content-Type: application/json
@@ -17,7 +21,7 @@ Content-Type: application/json
     "address":"sydney"
 
 }
-###
+
 
 PATCH http://localhost:8000/api/v1/register-login
 Content-Type: application/json
@@ -45,6 +49,27 @@ Content-Type: application/json
 
 {
     "status":"inactive",
-    "name":"Electronic",
+    "name":"microPhone",
+    "parentCatId":"62c124f769b318838710e454"
+}
+
+### update category
+PUT  http://localhost:8000/api/v1/category
+Content-Type: application/json
+
+{
+    "_id":"62c124f769b318838710e454",
+    "status":"active",
+    "name":"mobile",
     "parentCatId":null
+}
+
+### delete category
+DELETE   http://localhost:8000/api/v1/category
+Content-Type: application/json
+
+{
+    "ids":["62c124f769b318838710e454",
+    "62c8c71349edc8314d7f84ba"]
+    
 }
