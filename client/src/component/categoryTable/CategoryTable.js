@@ -7,6 +7,7 @@ import {
   deleteCategoryAction,
   getCategoryAction,
 } from "../../pages/Categories/catAction";
+import { CustomModal } from "../custom-modal/CustomModal";
 
 export const CategoryTable = () => {
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ export const CategoryTable = () => {
   return (
     <Row className="mt-5">
       <Col>
+        <CustomModal />
         <p>{categories.length} Categories found</p>
         <Table striped bordered hover>
           <thead>
