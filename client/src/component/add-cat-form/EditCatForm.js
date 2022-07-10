@@ -1,7 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form, Row, Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { postCategoryAction } from "../../pages/Categories/catAction";
+import { updateCategory } from "../../helper/axios-helper";
+import {
+  postCategoryAction,
+  updateCategoryAction,
+} from "../../pages/Categories/catAction";
 import CustomInput from "../custom-input/CustomInput";
 
 const initialState = {
@@ -10,12 +14,18 @@ const initialState = {
   parentCatId: null,
 };
 
-const AddCatForm = () => {
+const EditCatForm = ({ selectCat }) => {
+  //   console.log(selectCat);
   const dispatch = useDispatch();
   const [form, setForm] = useState(initialState);
+  const [update, setUpdate] = useState({});
 
   const { categories } = useSelector((state) => state.categories);
   console.log(categories);
+
+  useEffect(() => {
+    setForm(selectCat);
+  }, [selectCat]);
 
   const handleOnChange = (e) => {
     let { checked, name, value } = e.target;
@@ -29,14 +39,22 @@ const AddCatForm = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    dispatch(postCategoryAction(form));
+    const { name, _id, parentCatId, status } = form;
+    dispatch(updateCategoryAction({ name, _id, parentCatId, status }));
     console.log(form);
+    // dispatch(postCategoryAction(form));
   };
+
+  //   const handleOnUpdate = () => {
+  //     if (window.confirm("Are you sure you wanna update the item??")) {
+  //       dispatch(updateCategory(form.name, form.parentCatId, form.status));
+  //       setUpdate({});
+  //     }
+  //   };
 
   return (
     <div>
       <Form onSubmit={handleOnSubmit}>
-        <h4>Add new Category</h4>
         <Row className="g-2 mt-3">
           <Col md="2">
             <Form.Check
@@ -44,6 +62,7 @@ const AddCatForm = () => {
               onChange={handleOnChange}
               label="status"
               type="switch"
+              checked={form.status === "active"}
             ></Form.Check>
           </Col>
           <Col md="3">
@@ -56,11 +75,13 @@ const AddCatForm = () => {
                 <option>Select Parent Category</option>
                 {categories.map((item) => {
                   return (
-                    item.parentCatId === null && (
-                      <option key={item._id} value={item._id}>
-                        {item.name}
-                      </option>
-                    )
+                    <option
+                      key={item._id}
+                      value={item._id}
+                      selected={item._id === form.parentCatId}
+                    >
+                      {item.name}
+                    </option>
                   );
                 })}
               </Form.Select>
@@ -72,10 +93,11 @@ const AddCatForm = () => {
               placeholder="Category Name"
               onChange={handleOnChange}
               required
+              value={form.name}
             />
           </Col>
           <Col md="3">
-            <Button type="submit">Add Category</Button>
+            <Button type="submit">Update Category</Button>
           </Col>
         </Row>
       </Form>
@@ -83,4 +105,4 @@ const AddCatForm = () => {
   );
 };
 
-export default AddCatForm;
+export default EditCatForm;

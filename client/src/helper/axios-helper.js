@@ -45,3 +45,7 @@ export const postCategory = (obj) => {
 export const deleteCategory = (obj) => {
   return apiProcessor("delete", catEP, obj);
 };
+
+export const updateCategory = (obj) => {
+  return apiProcessor("put", catEP, obj);
+};

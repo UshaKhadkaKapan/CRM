@@ -22,7 +22,7 @@ Content-Type: application/json
 
 }
 
-
+###
 PATCH http://localhost:8000/api/v1/register-login
 Content-Type: application/json
 
@@ -72,4 +72,14 @@ Content-Type: application/json
     "ids":["62c124f769b318838710e454",
     "62c8c71349edc8314d7f84ba"]
     
+}
+###
+PATCH http://localhost:8000/api/v1/category
+Content-Type: application/json
+
+{
+    "name":"mobile",
+    "parentCatId":"null",
+    "status":"active"
+
 }

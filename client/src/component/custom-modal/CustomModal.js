@@ -8,7 +8,7 @@ export const CustomModal = ({ title, children, ...rest }) => {
   return (
     <Modal
       show={showModal}
-      onHide={() => dispatch(toggleShowModal())}
+      onHide={() => dispatch(toggleShowModal(false))}
       {...rest}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"

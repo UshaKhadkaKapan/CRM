@@ -3,6 +3,7 @@ import {
   deleteCategory,
   fetchCategory,
   postCategory,
+  updateCategory,
 } from "../../helper/axios-helper";
 import { setCategories } from "./catSlice";
 
@@ -24,6 +25,16 @@ export const postCategoryAction = (obj) => async (dispatch) => {
 
 export const deleteCategoryAction = (obj) => async (dispatch) => {
   const responsePromise = deleteCategory(obj);
+  toast.promise(responsePromise, { pending: "Please wait..." });
+  const { status, result } = await responsePromise;
+
+  toast[status](result);
+
+  status === "success" && dispatch(getCategoryAction());
+};
+
+export const updateCategoryAction = (obj) => async (dispatch) => {
+  const responsePromise = updateCategory(obj);
   toast.promise(responsePromise, { pending: "Please wait..." });
   const { status, result } = await responsePromise;
 
