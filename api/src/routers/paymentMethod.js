@@ -1,13 +1,19 @@
 import express from "express";
 import { paymentMethodValidation } from "../middlewares/validationMiddleware.js";
-import { createPaymentMethod } from "../models/paymentMethod/PaymentMethodModel.js";
-const router = express.Router;
+import {
+  createPaymentMethod,
+  getPaymentMethods,
+} from "../models/paymentMethod/PaymentMethodModel.js";
+const router = express.Router();
 
-router.get("/", (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
+    const result = await getPaymentMethods();
+
     res.json({
       status: "success",
       message: "todo get method",
+      result,
     });
   } catch (error) {
     error.status = 500;
@@ -19,7 +25,7 @@ router.post("/", paymentMethodValidation, async (req, res, next) => {
   try {
     const result = await createPaymentMethod(req.body);
 
-    resutl?._id
+    result?._id
       ? res.json({
           status: "success",
           message: "The new payment has been added",
