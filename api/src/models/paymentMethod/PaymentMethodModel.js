@@ -13,12 +13,12 @@ export const getPaymentMethod = (filter) => {
   return PaymentMethodSchema.findOne(filter);
 };
 
-//filter nad update must be an object
-export const updatePaymentMethod = (filter, update) => {
-  return PaymentMethodSchema.findOne(filter, update, { new: true });
+//update must be an object
+export const updatePaymentMethodByID = ({ _id, ...update }) => {
+  return PaymentMethodSchema.findByIdAndUpdate(_id, update, { new: true });
 };
 
 //filter nad update must be an object
-export const deletePaymentMethod = (filter) => {
-  return PaymentMethodSchema.findOneAndDelete(filter);
+export const deletePaymentMethodById = (_id) => {
+  return PaymentMethodSchema.findByIdAndDelete(_id);
 };

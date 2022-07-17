@@ -96,7 +96,7 @@ Content-Type: application/json
 {
     "status":"inactive",
     "name":"Bank Transfer",
-    "description":"Please EFT to the following  accounts, BSB:253681 and Account No. 1234567"
+    "description":"hsklsaosdksakk "
 
 }
 
@@ -105,8 +105,12 @@ PUT http://localhost:8000/api/v1/paymentMethod
 Content-Type: application/json
 
 {
-    
+    "_id":"",
+    "status":"active",
+    "name":"credit tranfer",
+    "description":"Rent"
 }
+
 
 ###
 DELETE  http://localhost:8000/api/v1/paymentMethod/_idofthepaymentmethod
