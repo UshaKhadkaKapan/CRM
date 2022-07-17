@@ -20,6 +20,7 @@ import registerLoginRouter from "./src/routers/registerLoginRouter.js";
 import categoriesRouter from "./src/routers/categoriesRouter.js";
 app.use("/api/v1/register-login", registerLoginRouter),
   app.use("/api/v1/category", categoriesRouter);
+// app.use("/api/v1/payment", paymentRouter);
 app.get("/", (req, res) => {
   res.json({
     message: "you reach a e-commerce api",
