@@ -1,4 +1,5 @@
 import express from "express";
+import { paymentMethodValidation } from "../middlewares/validationMiddleware.js";
 import { createPaymentMethod } from "../models/paymentMethod/PaymentMethodModel.js";
 const router = express.Router;
 
@@ -14,7 +15,7 @@ router.get("/", (req, res, next) => {
   }
 });
 
-router.post("/", async (req, res, next) => {
+router.post("/", paymentMethodValidation, async (req, res, next) => {
   try {
     const result = await createPaymentMethod(req.body);
 
@@ -25,7 +26,7 @@ router.post("/", async (req, res, next) => {
         })
       : res.json({
           status: "error",
-          message: "Sorry! cannot added the payment ",
+          message: "Sorry! cannot added the payment.Please try again later ",
         });
   } catch (error) {
     error.status = 500;
