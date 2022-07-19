@@ -64,6 +64,6 @@ export const putPaymentMethod = (obj) => {
   return apiProcessor("put", paymentMethodEP, obj);
 };
 
-export const deletePaymentMethod = (obj) => {
-  return apiProcessor("post", paymentMethodEP, obj);
+export const deletePaymentMethod = (_id) => {
+  return apiProcessor("delete", paymentMethodEP, +"/" + _id);
 };
