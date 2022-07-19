@@ -4,6 +4,7 @@ const rootUrl = "http://localhost:8000/api/v1";
 const loginRegisterEP = rootUrl + "/register-login";
 const loginEp = loginRegisterEP + "/login";
 const catEP = rootUrl + "/category";
+const paymentMethodEP = rootUrl + "/payment";
 
 const apiProcessor = async (method, url, data) => {
   try {
@@ -48,4 +49,21 @@ export const deleteCategory = (obj) => {
 
 export const updateCategory = (obj) => {
   return apiProcessor("put", catEP, obj);
+};
+
+// api for paymentMethod
+
+export const fetchPaymentMethod = () => {
+  return apiProcessor("get", paymentMethodEP);
+};
+export const postPaymentMethod = (obj) => {
+  return apiProcessor("post", paymentMethodEP, obj);
+};
+
+export const putPaymentMethod = (obj) => {
+  return apiProcessor("put", paymentMethodEP, obj);
+};
+
+export const deletePaymentMethod = (obj) => {
+  return apiProcessor("post", paymentMethodEP, obj);
 };
