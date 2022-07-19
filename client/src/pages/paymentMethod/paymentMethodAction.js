@@ -1,4 +1,3 @@
-import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import {
   deletePaymentMethod,
@@ -13,8 +12,9 @@ export const getPaymentMethodAction = () => async (dispatch) => {
   status === "success" && dispatch(setPaymentMethods(result));
 };
 
-export const deletePaymentMethodAction = () => async (dispatch) => {
-  const responsePromise = deletePaymentMethod();
+export const deletePaymentMethodAction = (_id) => async (dispatch) => {
+  const responsePromise = deletePaymentMethod(_id);
+  console.log(responsePromise);
   toast.promise(responsePromise, { pending: "Please Wait" });
   const { status, message } = await responsePromise;
   toast[status](message);

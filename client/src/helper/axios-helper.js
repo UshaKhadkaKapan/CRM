@@ -4,7 +4,7 @@ const rootUrl = "http://localhost:8000/api/v1";
 const loginRegisterEP = rootUrl + "/register-login";
 const loginEp = loginRegisterEP + "/login";
 const catEP = rootUrl + "/category";
-const paymentMethodEP = rootUrl + "/payment";
+const paymentMethodEP = rootUrl + "/paymentMethod";
 
 const apiProcessor = async (method, url, data) => {
   try {
@@ -65,5 +65,5 @@ export const putPaymentMethod = (obj) => {
 };
 
 export const deletePaymentMethod = (_id) => {
-  return apiProcessor("delete", paymentMethodEP, +"/" + _id);
+  return apiProcessor("delete", paymentMethodEP + "/" + _id);
 };

@@ -9,14 +9,14 @@ import {
 const PaymentMethodTable = () => {
   const dispatch = useDispatch();
   const { paymentMethods } = useSelector((state) => state.paymentMethod);
+
   useEffect(() => {
     dispatch(getPaymentMethodAction());
   }, []);
-  console.log(paymentMethods);
 
   const handleOnDelete = (_id) => {
     if (window.confirm("Are you sure, you want to delete?")) {
-      deletePaymentMethodAction(_id);
+      dispatch(deletePaymentMethodAction(_id));
     }
   };
   return (
@@ -33,7 +33,7 @@ const PaymentMethodTable = () => {
           </tr>
         </thead>
         <tbody>
-          {paymentMethods.map((item, i) => {
+          {paymentMethods.map((item, i) => (
             <tr key={item._id}>
               <td>{i + 1}</td>
               <td>{item.status}</td>
@@ -48,8 +48,8 @@ const PaymentMethodTable = () => {
                   Delete
                 </Button>
               </td>
-            </tr>;
-          })}
+            </tr>
+          ))}
         </tbody>
       </Table>
     </div>
