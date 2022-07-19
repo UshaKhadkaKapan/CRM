@@ -14,7 +14,7 @@ const AddPaymentMethodForm = () => {
     {
       label: "Description",
       name: "description",
-      placeholder: "Pay by Credit Card",
+      placeholder: "Write more about the description",
       required: true,
       type: "text",
       as: "textarea",
@@ -23,7 +23,9 @@ const AddPaymentMethodForm = () => {
   return (
     <div>
       <Form>
-        <CustomInput />
+        {inputFields.map((item, i) => (
+          <CustomInput {...item} />
+        ))}
       </Form>
     </div>
   );
