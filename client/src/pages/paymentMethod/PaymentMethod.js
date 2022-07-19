@@ -1,5 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+import AddPaymentMethodForm from "../../component/paymentMethod/AddPaymentMethodForm";
 import PaymentMethodTable from "../../component/paymentMethod/PaymentMethodTable";
 import AdminLayout from "../../layout/AdminLayout";
 
@@ -12,7 +13,7 @@ const PaymentMethod = () => {
           <i class="fa-solid fa-plus"></i> Add New Button
         </Button>
       </div>
-
+      <AddPaymentMethodForm />
       <PaymentMethodTable />
     </AdminLayout>
   );
