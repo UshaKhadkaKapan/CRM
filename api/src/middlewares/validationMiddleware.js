@@ -1,117 +1,86 @@
 import Joi from "joi";
+import {
+  ADDRESS,
+  DOB,
+  EMAIL,
+  FNAME,
+  joiValidator,
+  LNAME,
+  LONGSTR,
+  PASSWORD,
+  PHONE,
+  SHORTSTR,
+  STATUS,
+} from "./joiConstantValidation.js";
 
 export const adminRegistrationValidation = (req, res, next) => {
   console.log(req.body);
 
   const schema = Joi.object({
-    fName: Joi.string().min(3).max(50).required(),
-    lName: Joi.string().min(3).max(50).required(),
-    dob: Joi.date().allow(null, "").required(),
-    phone: Joi.string().min(3).max(50).required(),
-    email: Joi.string().email({ minDomainSegments: 2 }).max(30).required(),
-    password: Joi.string().min(3).max(50).required(),
-    address: Joi.string().allow("").max(50).required(),
+    fName: FNAME,
+    lName: LNAME,
+    dob: DOB,
+    phone: PHONE,
+    email: EMAIL,
+    password: PASSWORD,
+    address: ADDRESS,
   });
 
-  const { error, value } = schema.validate(req.body);
-  if (error) {
-    return res.json({
-      status: "error",
-      message: error.message,
-    });
-  }
-
-  next();
+  joiValidator(schema, req, res, next);
 };
 
 export const loginValidation = (req, res, next) => {
   console.log(req.body);
 
   const schema = Joi.object({
-    email: Joi.string().email({ minDomainSegments: 2 }).max(30).required(),
-    password: Joi.string().min(3).max(50).required(),
+    email: EMAIL,
+    password: PASSWORD,
   });
 
-  const { error, value } = schema.validate(req.body);
-  if (error) {
-    return res.json({
-      status: "error",
-      message: error.message,
-    });
-  }
-
-  next();
+  joiValidator(schema, req, res, next);
 };
 
 export const categoryValidation = (req, res, next) => {
   const schema = Joi.object({
-    status: Joi.string().min(3).max(50).required(),
-    name: Joi.string().min(3).max(50).required(),
-    parentCatId: Joi.string().allow(null, ""),
+    status: STATUS,
+    name: SHORTSTR.required(),
+    parentCatId: SHORTSTR.allow(null, ""),
   });
 
-  const { error, value } = schema.validate(req.body);
-  if (error) {
-    return res.json({
-      status: "error",
-      message: error.message,
-    });
-  }
-  next();
+  joiValidator(schema, req, res, next);
 };
 
 export const updateCategoryValidation = (req, res, next) => {
   req.body.parentCatId = req.body.parentCatId ? req.body.parentCatId : null;
   const schema = Joi.object({
-    _id: Joi.string().max(50).required(),
-    status: Joi.string().min(3).max(50).required(),
-    name: Joi.string().min(3).max(50).required(),
-    parentCatId: Joi.string().allow(null, ""),
+    _id: SHORTSTR.required(),
+    status: STATUS,
+    name: SHORTSTR.required(),
+    parentCatId: SHORTSTR.allow(null, ""),
   });
 
-  const { error, value } = schema.validate(req.body);
-  if (error) {
-    return res.json({
-      status: "error",
-      message: error.message,
-    });
-  }
-  next();
+  joiValidator(schema, req, res, next);
 };
 
 export const paymentMethodValidation = (req, res, next) => {
   // req.body.parentCatId = req.body.parentCatId ? req.body.parentCatId : null;
   const schema = Joi.object({
-    status: Joi.string().min(3).max(50).required(),
-    name: Joi.string().min(3).max(50).required(),
-    description: Joi.string().max(1000).allow(null, ""),
+    status: STATUS,
+    name: SHORTSTR.required(),
+    description: LONGSTR.allow(null, ""),
   });
 
-  const { error, value } = schema.validate(req.body);
-  if (error) {
-    return res.json({
-      status: "error",
-      message: error.message,
-    });
-  }
-  next();
+  joiValidator(schema, req, res, next);
 };
 
 export const updatePaymentMethodValidation = (req, res, next) => {
   // req.body.parentCatId = req.body.parentCatId ? req.body.parentCatId : null;
   const schema = Joi.object({
-    _id: Joi.string().min(3).max(50).required(),
-    status: Joi.string().min(3).max(50).required(),
-    name: Joi.string().min(3).max(50).required(),
-    description: Joi.string().max(1000).allow(null, ""),
+    _id: SHORTSTR.required(),
+    status: STATUS,
+    name: SHORTSTR.required(),
+    description: LONGSTR.allow(null, ""),
   });
 
-  const { error, value } = schema.validate(req.body);
-  if (error) {
-    return res.json({
-      status: "error",
-      message: error.message,
-    });
-  }
-  next();
+  joiValidator(schema, req, res, next);
 };
