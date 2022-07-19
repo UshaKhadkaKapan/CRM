@@ -6,14 +6,14 @@ import {
 import {
   createPaymentMethod,
   deletePaymentMethodById,
-  getPaymentMethod,
+  getPaymentMethods,
   updatePaymentMethodByID,
 } from "../models/paymentMethod/PaymentMethodModel.js";
 const router = express.Router();
 
 router.get("/", async (req, res, next) => {
   try {
-    const result = await getPaymentMethod();
+    const result = await getPaymentMethods();
 
     res.json({
       status: "success",

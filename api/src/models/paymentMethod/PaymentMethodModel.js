@@ -9,7 +9,7 @@ export const getPaymentMethods = () => {
 };
 
 // filter must be object
-export const getPaymentMethod = (filter) => {
+export const getSinglePaymentMethod = (filter) => {
   return PaymentMethodSchema.findOne(filter);
 };
 
