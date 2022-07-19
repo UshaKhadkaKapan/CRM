@@ -2,7 +2,7 @@ import React from "react";
 import AdminLayout from "../../layout/AdminLayout";
 
 const PaymentMethod = () => {
-  return <AdminLayout>paymentMethod</AdminLayout>;
+  return <AdminLayout></AdminLayout>;
 };
 
 export default PaymentMethod;
