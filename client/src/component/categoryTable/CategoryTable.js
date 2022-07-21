@@ -7,7 +7,7 @@ import {
 } from "../../pages/Categories/catAction";
 import { toggleShowModal } from "../../pages/system-state/SystemSlice";
 import EditCatForm from "../add-cat-form/EditCatForm";
-import { CustomModal } from "../custom-modal/CustomModal";
+import CustomModal from "../custom-modal/CustomModal";
 
 export const CategoryTable = () => {
   const dispatch = useDispatch();

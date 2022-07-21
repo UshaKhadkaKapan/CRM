@@ -26,6 +26,7 @@ const AddPaymentMethodForm = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     dispatch(postPaymentMethodAction(form));
+    setForm(initialState);
     console.log(form);
   };
 
@@ -36,6 +37,7 @@ const AddPaymentMethodForm = () => {
       placeholder: "i.e Pay by Credit Card",
       required: true,
       type: "text",
+      value: form.name,
     },
     {
       label: "Description",
@@ -44,6 +46,7 @@ const AddPaymentMethodForm = () => {
       required: true,
       type: "text",
       as: "textarea",
+      value: form.description,
     },
     {
       type: "submit",
@@ -60,6 +63,7 @@ const AddPaymentMethodForm = () => {
           label="status"
           type="switch"
           onChange={handleOnChange}
+          checked={form.status === "active"}
         ></Form.Check>
         {inputFields.map((item, i) => (
           <CustomInput key={i} {...item} onChange={handleOnChange} />

@@ -2,7 +2,7 @@ import Modal from "react-bootstrap/Modal";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleShowModal } from "../../pages/system-state/SystemSlice";
 
-export const CustomModal = ({ title, children, ...rest }) => {
+const CustomModal = ({ title, children, ...rest }) => {
   const dispatch = useDispatch();
   const { showModal } = useSelector((state) => state.system);
   return (
@@ -25,21 +25,4 @@ export const CustomModal = ({ title, children, ...rest }) => {
   );
 };
 
-// function App() {
-//   const [modalShow, setModalShow] = React.useState(false);
-
-//   return (
-//     <>
-//       <Button variant="primary" onClick={() => setModalShow(true)}>
-//         Launch vertically centered modal
-//       </Button>
-
-//       <MyVerticallyCenteredModal
-//         show={modalShow}
-//         onHide={() => setModalShow(false)}
-//       />
-//     </>
-//   );
-// }
-
-// render(<App />);
+export default CustomModal;
