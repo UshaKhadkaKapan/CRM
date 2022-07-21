@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { postPaymentMethodAction } from "../../pages/paymentMethod/paymentMethodAction";
 import CustomInput from "../custom-input/CustomInput";
 
 const initialState = {
@@ -8,6 +10,8 @@ const initialState = {
   description: "",
 };
 const AddPaymentMethodForm = () => {
+  const dispatch = useDispatch();
+
   const [form, setForm] = useState(initialState);
 
   const handleOnChange = (e) => {
@@ -21,6 +25,7 @@ const AddPaymentMethodForm = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
+    dispatch(postPaymentMethodAction(form));
     console.log(form);
   };
 
