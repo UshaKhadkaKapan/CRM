@@ -13,6 +13,9 @@ const AddPaymentMethodForm = () => {
   const handleOnChange = (e) => {
     let { name, value, checked } = e.target;
 
+    if (name === "status") {
+      value = "status" ? "active" : "inactive";
+    }
     setForm({ ...form, [name]: value });
   };
 
@@ -47,7 +50,12 @@ const AddPaymentMethodForm = () => {
   return (
     <div>
       <Form onSubmit={handleOnSubmit}>
-        <Form.Check name="status" label="status" type="switch"></Form.Check>
+        <Form.Check
+          name="status"
+          label="status"
+          type="switch"
+          onChange={handleOnChange}
+        ></Form.Check>
         {inputFields.map((item, i) => (
           <CustomInput key={i} {...item} onChange={handleOnChange} />
         ))}
