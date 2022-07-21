@@ -23,6 +23,12 @@ const AddPaymentMethodForm = () => {
   return (
     <div>
       <Form>
+        <Form.Check
+          name="status"
+          // onChange={handleOnChange}
+          label="status"
+          type="switch"
+        ></Form.Check>
         {inputFields.map((item, i) => (
           <CustomInput {...item} />
         ))}
