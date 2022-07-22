@@ -6,11 +6,11 @@ import {
   getPaymentMethodAction,
 } from "../../pages/paymentMethod/paymentMethodAction";
 import { toggleShowModal } from "../../pages/system-state/SystemSlice";
-import CustomModal from "../custom-modal/CustomModal";
+
+import AddPaymentMethodForm from "./AddPaymentMethodForm";
 import EditAddPaymentMethodForm from "./EditAddPaymentMethod";
 
-const PaymentMethodTable = () => {
-  const [showForm, setShowForm] = useState();
+const PaymentMethodTable = ({ showForm, setShowForm }) => {
   const dispatch = useDispatch();
   const { paymentMethods } = useSelector((state) => state.paymentMethod);
 
@@ -24,12 +24,18 @@ const PaymentMethodTable = () => {
     }
   };
 
-  const handleOnShowForm = () => {
-    setShowForm(true);
+  const handleOnEdit = (_id) => {
+    setShowForm("edit");
     dispatch(toggleShowModal(true));
+  };
+
+  const whichForm = {
+    add: <AddPaymentMethodForm />,
+    edit: <EditAddPaymentMethodForm />,
   };
   return (
     <div className="table">
+      {whichForm[showForm]}
       <div>49 Payment Method found</div>
       <Table striped bordered hover>
         <thead>
@@ -49,10 +55,13 @@ const PaymentMethodTable = () => {
               <td>{item.name}</td>
               <td>{item.description}</td>
               <td>
-                <Button variant="warning" onClick={handleOnShowForm}>
+                <Button
+                  variant="warning"
+                  onClick={() => handleOnEdit(item._id)}
+                >
                   Edit
                 </Button>
-                {showForm && <EditAddPaymentMethodForm />}
+
                 <Button
                   variant="danger"
                   onClick={() => handleOnDelete(item._id)}

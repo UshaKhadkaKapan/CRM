@@ -1,18 +1,17 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import CustomModal from "../../component/custom-modal/CustomModal.js";
-import AddPaymentMethodForm from "../../component/paymentMethod/AddPaymentMethodForm";
+
 import PaymentMethodTable from "../../component/paymentMethod/PaymentMethodTable";
 import AdminLayout from "../../layout/AdminLayout";
 import { toggleShowModal } from "../system-state/SystemSlice.js";
 
 const PaymentMethod = () => {
   const dispatch = useDispatch();
-  const [showForm, setShowForm] = useState(true);
+  const [showForm, setShowForm] = useState();
 
   const handleOnShowForm = () => {
-    setShowForm(true);
+    setShowForm("add");
     dispatch(toggleShowModal(true));
   };
   return (
@@ -24,9 +23,7 @@ const PaymentMethod = () => {
         </Button>
       </div>
 
-      {showForm && <AddPaymentMethodForm />}
-
-      <PaymentMethodTable />
+      <PaymentMethodTable showForm={showForm} setShowForm={setShowForm} />
     </AdminLayout>
   );
 };
