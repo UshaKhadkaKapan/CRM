@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { updatePaymentMethodAction } from "../../pages/paymentMethod/paymentMethodAction";
@@ -10,10 +10,13 @@ const initialState = {
   name: "",
   description: "",
 };
-const EditAddPaymentMethodForm = () => {
+const EditAddPaymentMethodForm = ({ selectedPaymentMethod }) => {
   const dispatch = useDispatch();
-
   const [form, setForm] = useState(initialState);
+
+  useEffect(() => {
+    setForm(selectedPaymentMethod);
+  }, [selectedPaymentMethod]);
 
   const handleOnChange = (e) => {
     let { name, value, checked } = e.target;
@@ -26,7 +29,8 @@ const EditAddPaymentMethodForm = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    dispatch(updatePaymentMethodAction(form));
+    const { __v, updatedAt, createdAt, ...rest } = form;
+    dispatch(updatePaymentMethodAction(rest));
     setForm(initialState);
     console.log(form);
   };

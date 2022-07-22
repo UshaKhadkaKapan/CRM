@@ -11,6 +11,7 @@ import AddPaymentMethodForm from "./AddPaymentMethodForm";
 import EditAddPaymentMethodForm from "./EditAddPaymentMethod";
 
 const PaymentMethodTable = ({ showForm, setShowForm }) => {
+  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState({});
   const dispatch = useDispatch();
   const { paymentMethods } = useSelector((state) => state.paymentMethod);
 
@@ -24,14 +25,17 @@ const PaymentMethodTable = ({ showForm, setShowForm }) => {
     }
   };
 
-  const handleOnEdit = (_id) => {
+  const handleOnEdit = (item) => {
+    setSelectedPaymentMethod(item);
     setShowForm("edit");
     dispatch(toggleShowModal(true));
   };
 
   const whichForm = {
     add: <AddPaymentMethodForm />,
-    edit: <EditAddPaymentMethodForm />,
+    edit: (
+      <EditAddPaymentMethodForm selectedPaymentMethod={selectedPaymentMethod} />
+    ),
   };
   return (
     <div className="table">
@@ -55,10 +59,7 @@ const PaymentMethodTable = ({ showForm, setShowForm }) => {
               <td>{item.name}</td>
               <td>{item.description}</td>
               <td>
-                <Button
-                  variant="warning"
-                  onClick={() => handleOnEdit(item._id)}
-                >
+                <Button variant="warning" onClick={() => handleOnEdit(item)}>
                   Edit
                 </Button>
 
