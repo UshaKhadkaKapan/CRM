@@ -24,11 +24,7 @@ const PaymentMethod = () => {
         </Button>
       </div>
 
-      {showForm && (
-        <CustomModal title="Add new payment method">
-          <AddPaymentMethodForm />
-        </CustomModal>
-      )}
+      {showForm && <AddPaymentMethodForm />}
 
       <PaymentMethodTable />
     </AdminLayout>

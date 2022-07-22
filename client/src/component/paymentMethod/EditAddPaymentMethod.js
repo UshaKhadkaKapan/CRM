@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form } from "react-bootstrap";
 import { useDispatch } from "react-redux";
-import { postPaymentMethodAction } from "../../pages/paymentMethod/paymentMethodAction";
+import { updatePaymentMethodAction } from "../../pages/paymentMethod/paymentMethodAction";
 import CustomInput from "../custom-input/CustomInput";
 import CustomModal from "../custom-modal/CustomModal";
 
@@ -10,7 +10,7 @@ const initialState = {
   name: "",
   description: "",
 };
-const AddPaymentMethodForm = () => {
+const EditAddPaymentMethodForm = () => {
   const dispatch = useDispatch();
 
   const [form, setForm] = useState(initialState);
@@ -26,7 +26,7 @@ const AddPaymentMethodForm = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    dispatch(postPaymentMethodAction(form));
+    dispatch(updatePaymentMethodAction(form));
     setForm(initialState);
     console.log(form);
   };
@@ -52,13 +52,13 @@ const AddPaymentMethodForm = () => {
     {
       type: "submit",
       className: "btn btn-primary",
-      value: "Add Payment Method",
+      value: "Update Payment Method",
     },
   ];
   console.log(form);
   return (
     <div>
-      <CustomModal title="Add Payment method">
+      <CustomModal title="Edit and Update Payment Method">
         <Form onSubmit={handleOnSubmit}>
           <Form.Check
             name="status"
@@ -76,4 +76,4 @@ const AddPaymentMethodForm = () => {
   );
 };
 
-export default AddPaymentMethodForm;
+export default EditAddPaymentMethodForm;

@@ -1,12 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deletePaymentMethodAction,
   getPaymentMethodAction,
 } from "../../pages/paymentMethod/paymentMethodAction";
+import { toggleShowModal } from "../../pages/system-state/SystemSlice";
+import CustomModal from "../custom-modal/CustomModal";
+import EditAddPaymentMethodForm from "./EditAddPaymentMethod";
 
 const PaymentMethodTable = () => {
+  const [showForm, setShowForm] = useState();
   const dispatch = useDispatch();
   const { paymentMethods } = useSelector((state) => state.paymentMethod);
 
@@ -18,6 +22,11 @@ const PaymentMethodTable = () => {
     if (window.confirm("Are you sure, you want to delete?")) {
       dispatch(deletePaymentMethodAction(_id));
     }
+  };
+
+  const handleOnShowForm = () => {
+    setShowForm(true);
+    dispatch(toggleShowModal(true));
   };
   return (
     <div className="table">
@@ -40,7 +49,10 @@ const PaymentMethodTable = () => {
               <td>{item.name}</td>
               <td>{item.description}</td>
               <td>
-                <Button variant="warning">Edit</Button>
+                <Button variant="warning" onClick={handleOnShowForm}>
+                  Edit
+                </Button>
+                {showForm && <EditAddPaymentMethodForm />}
                 <Button
                   variant="danger"
                   onClick={() => handleOnDelete(item._id)}
