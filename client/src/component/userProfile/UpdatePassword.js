@@ -17,6 +17,8 @@ export const UpdatePassword = () => {
 
     if (name === "password" || name === "confirmPassword") {
       setError("");
+
+      !disableBtn && setDisableBtn(true);
     }
     console.log(name, value);
 
@@ -45,6 +47,10 @@ export const UpdatePassword = () => {
     console.log(form);
   };
 
+  const btnDisable = () => {
+    !error && setDisableBtn(false);
+  };
+
   const inputFields = [
     {
       label: "Current Password",
@@ -66,6 +72,7 @@ export const UpdatePassword = () => {
       required: true,
       type: "password",
       value: form.confirmPassword,
+      onBlur: btnDisable,
     },
   ];
   return (
@@ -87,7 +94,7 @@ export const UpdatePassword = () => {
         <Form.Control
           type="submit"
           value="Update Password"
-          className="btn btn-danger"
+          className="btn btn-danger mb-4"
           disabled={disableBtn}
         />
       </Form>

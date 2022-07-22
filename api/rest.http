@@ -114,3 +114,16 @@ Content-Type: application/json
 
 ###
 DELETE  http://localhost:8000/api/v1/paymentMethod/62d67de4f2a592b86ee81c2b
+
+
+# ====== admin api
+
+###
+PATCH http://localhost:8000/api/v1/admin
+Content-Type: application/json
+
+{
+    "password":"Usha",
+    "confirmPassword":"Usha",
+    "email":"Khadkausha83@gmail.com"
+}

@@ -19,9 +19,11 @@ mongoConnect();
 import registerLoginRouter from "./src/routers/registerLoginRouter.js";
 import categoriesRouter from "./src/routers/categoriesRouter.js";
 import paymentMethod from "./src/routers/paymentMethod.js";
+import adminRouter from "./src/routers/adminRouter.js";
 app.use("/api/v1/register-login", registerLoginRouter),
   app.use("/api/v1/category", categoriesRouter);
 app.use("/api/v1/paymentMethod", paymentMethod);
+app.use("/api/v1/admin", adminRouter);
 app.get("/", (req, res) => {
   res.json({
     message: "you reach a e-commerce api",
