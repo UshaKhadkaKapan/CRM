@@ -1,7 +1,10 @@
 import express from "express";
 import { comparePassword, hashPassword } from "../helpers/bcryptHelper.js";
 import { profileUpdatedVerificationMail } from "../helpers/emailHelper.js";
-import { updatePassword } from "../middlewares/validationMiddleware.js";
+import {
+  updateAdminPasswordValidation,
+  updatePassword,
+} from "../middlewares/validationMiddleware.js";
 import { getOndAdmin, updateAdmin } from "../models/adminUser/AdminModel.js";
 const router = express.Router();
 
@@ -28,11 +31,35 @@ router.post("/", (req, res, next) => {
 });
 
 // update admin profile
-router.put("/", (req, res, next) => {
+router.put("/", updateAdminPasswordValidation, async (req, res, next) => {
   try {
+    const { currentPassword, password, email, ...rest } = req.body;
+
+    //   check if user exit for the give email
+
+    const user = await getOndAdmin({ email });
+    //   if so, check if the pasword
+    if (user?._id) {
+      const isMatched = comparePassword(currentPassword, user.password);
+      if (isMatched) {
+        const filter = { _id: user._id };
+
+        const updatedAdmin = await updateAdmin(filter, rest);
+
+        if (updatedAdmin?._id) {
+          res.json({
+            status: "success",
+            message: "Your Profile has been updated",
+            user,
+          });
+          profileUpdatedVerificationMail(user);
+          return;
+        }
+      }
+    }
     res.json({
-      status: "success",
-      message: "todo get method",
+      status: "error",
+      message: "Unable to updated the data",
     });
   } catch (error) {
     next(error);

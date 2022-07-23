@@ -127,3 +127,18 @@ Content-Type: application/json
     "password":"Usha",
     "email":"Khadkausha83@gmail.com"
 }
+
+###
+PUT  http://localhost:8000/api/v1/admin
+Content-Type: application/json
+
+{
+   "address":"Sydney",
+   "dob":null,
+   "email":"Khadkausha83@gmail.com",
+   "fName":"usha",
+   "lName":"khadka",
+   "phone":"33333",
+   "currentPassword":"Usha123"
+
+}

@@ -1,5 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { updateAdminProfileAction } from "../../pages/admin-profile/adminAction";
 import CustomInput from "../custom-input/CustomInput";
 
 const initialState = {
@@ -9,9 +11,16 @@ const initialState = {
   email: "",
   dob: "",
   address: "",
+  currentPassword: "",
 };
 const UserProfile = () => {
+  const dispatch = useDispatch();
   const [form, setForm] = useState(initialState);
+  const { user } = useSelector((state) => state.adminUser);
+
+  useEffect(() => {
+    setForm(user);
+  }, []);
 
   const handleOnChange = (e) => {
     let { name, value } = e.target;
@@ -26,6 +35,18 @@ const UserProfile = () => {
   const handleOnSubmit = (e) => {
     e.preventDefault();
     console.log(form);
+    const { fName, lName, email, phone, address, currentPassword, dob } = form;
+    dispatch(
+      updateAdminProfileAction({
+        fName,
+        lName,
+        email,
+        phone,
+        address,
+        currentPassword,
+        dob,
+      })
+    );
   };
 
   const inputFields = [
@@ -41,7 +62,6 @@ const UserProfile = () => {
       label: "Last Name",
       name: "lName",
       placeholder: "  Khadka",
-      required: true,
       type: "text",
       value: form.lName,
     },
@@ -65,7 +85,6 @@ const UserProfile = () => {
       label: "DOB",
       name: "dob",
       placeholder: " 24/09/1999",
-      required: true,
       type: "date",
       value: form.dob,
     },
@@ -77,18 +96,14 @@ const UserProfile = () => {
       type: "text",
       value: form.address,
     },
+
     {
-      label: "DOB",
-      name: "dob",
-      type: "date",
-      value: form.dob,
-    },
-    {
-      label: "Address",
-      name: "address",
-      placeholder: "3 Sydney",
+      label: "Current Password",
+      name: "currentPassword",
+      placeholder: "******",
       type: "text",
-      value: form.address,
+      value: form.currentPassword,
+      required: true,
     },
     {
       className: "btn btn-warning",

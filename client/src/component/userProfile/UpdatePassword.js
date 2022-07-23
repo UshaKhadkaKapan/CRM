@@ -55,7 +55,7 @@ export const UpdatePassword = () => {
     const response = updateAdminPassword({ ...rest, email: user.email });
 
     toast.promise(response, { pending: "Please wait" });
-    const { status, message } = await response;
+    const { status, message } = response;
     toast[status](message);
   };
 

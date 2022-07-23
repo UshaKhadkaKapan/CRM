@@ -17,9 +17,9 @@ const RegisterationForm = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
 
-    // if (form.password !== form.confirmPassword) {
-    //   return toast.error("Password and  confirm password do not match");
-    // }
+    if (form.password !== form.confirmPassword) {
+      return toast.error("Password and  confirm password do not match");
+    }
 
     const { confirmPassword, ...rest } = form;
     const { status, message } = await postAdminUser(rest);
