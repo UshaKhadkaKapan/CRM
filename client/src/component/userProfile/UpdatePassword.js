@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { Alert, Form } from "react-bootstrap";
+import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { updateAdminPassword } from "../../helper/axios-helper";
 import CustomInput from "../custom-input/CustomInput";
 
 const initialState = {
@@ -11,6 +14,7 @@ export const UpdatePassword = () => {
   const [form, setForm] = useState(initialState);
   const [error, setError] = useState("");
   const [disableBtn, setDisableBtn] = useState(true);
+  const { user } = useSelector((state) => state.adminUser);
 
   const handleOnChange = (e) => {
     let { name, value } = e.target;
@@ -42,9 +46,17 @@ export const UpdatePassword = () => {
     }
   };
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
     console.log(form);
+
+    const { confirmPassword, ...rest } = form;
+
+    const response = await updateAdminPassword({ ...rest, email: user.email });
+
+    toast.promise(response, { pending: "Please wait" });
+    const { status, message } = await response;
+    toast[status](message);
   };
 
   const btnDisable = () => {

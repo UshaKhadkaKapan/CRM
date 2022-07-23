@@ -5,6 +5,7 @@ const loginRegisterEP = rootUrl + "/register-login";
 const loginEp = loginRegisterEP + "/login";
 const catEP = rootUrl + "/category";
 const paymentMethodEP = rootUrl + "/paymentMethod";
+const adminEP = rootUrl + "/admin";
 
 const apiProcessor = async (method, url, data) => {
   try {
@@ -66,4 +67,9 @@ export const putPaymentMethod = (obj) => {
 
 export const deletePaymentMethod = (_id) => {
   return apiProcessor("delete", paymentMethodEP + "/" + _id);
+};
+
+// admin user api
+export const updateAdminPassword = (obj) => {
+  return apiProcessor("patch", adminEP + obj);
 };

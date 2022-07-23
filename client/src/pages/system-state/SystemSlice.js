@@ -8,7 +8,7 @@ const systemSlice = createSlice({
   name: "system",
   initialState,
   reducers: {
-    toggleShowModel: (state) => {
+    toggleShowSideMenu: (state) => {
       state.showSideMenu = !state.showSideMenu;
     },
     toggleShowModal: (state, { payload }) => {
