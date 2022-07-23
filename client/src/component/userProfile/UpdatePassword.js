@@ -52,7 +52,7 @@ export const UpdatePassword = () => {
 
     const { confirmPassword, ...rest } = form;
 
-    const response = await updateAdminPassword({ ...rest, email: user.email });
+    const response = updateAdminPassword({ ...rest, email: user.email });
 
     toast.promise(response, { pending: "Please wait" });
     const { status, message } = await response;

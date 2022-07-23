@@ -39,6 +39,7 @@ route.post("/", adminRegistrationValidation, async (req, res, next) => {
     if (error.message.includes("E11000 duplicate key error collection")) {
       error.status = 200;
       error.message = "email already exist";
+      // console.log("Errrrrrrrrrrrrrrrrrrrrrrrrrrrr");
     }
     next(error);
   }

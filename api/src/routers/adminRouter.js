@@ -1,5 +1,8 @@
 import express from "express";
+import { comparePassword, hashPassword } from "../helpers/bcryptHelper.js";
+import { profileUpdatedVerificationMail } from "../helpers/emailHelper.js";
 import { updatePassword } from "../middlewares/validationMiddleware.js";
+import { getOndAdmin, updateAdmin } from "../models/adminUser/AdminModel.js";
 const router = express.Router();
 
 router.get("/", (req, res, next) => {
@@ -38,11 +41,40 @@ router.put("/", (req, res, next) => {
 
 //   update admin password as loggied in user
 
-router.patch("/", updatePassword, (req, res, next) => {
+router.patch("/", updatePassword, async (req, res, next) => {
   try {
+    const { currentPassword, password, email } = req.body;
+
+    //   check if user exit for the give email
+
+    const user = await getOndAdmin({ email });
+    //   if so, check if the pasword
+    if (user?._id) {
+      const isMatched = comparePassword(currentPassword, user.password);
+      if (isMatched) {
+        const hashsPass = hashPassword(password);
+
+        const filter = { _id: user._id };
+
+        const obj = {
+          password: hashsPass,
+        };
+        const updatedAdmin = await updateAdmin(filter, obj);
+
+        if (updatedAdmin?._id) {
+          res.json({
+            status: "success",
+            message: "New password has been updated",
+          });
+          profileUpdatedVerificationMail(user);
+          return;
+        }
+      }
+    }
+
     res.json({
-      status: "success",
-      message: "todo get method",
+      status: "error",
+      message: "Invalid current password",
     });
   } catch (error) {
     next(error);

@@ -55,3 +55,32 @@ export const sendAdminUserVerificationMail = (userObj) => {
   };
   sendMail(emailInfo);
 };
+
+export const profileUpdatedVerificationMail = (userObj) => {
+  // const link = `${process.env.DOMAIN}/admin-verification?e=${userObj.email}&c=${userObj.verificationCode}`;
+  // "http://localhost:3000/admin-verification?email=" +
+  //   userObj.email +
+  //   "&c=" +
+  //   userObj.verificationCode;
+  const emailInfo = {
+    from: '"ABC store" ' + process.env.MAIL_USER,
+    to: userObj.email, // list of receivers
+    subject: "Your profle has been updated", // Subject line
+    text: `Hi ${userObj.fName}, we have just notice that you profile has been updated. If it isnt you, please contact us immidiately`, // plain text body
+    html: `
+    <p>Hello ${userObj.fName}</p>
+    <br/>
+    <br/>
+    <p>we have just notic that your profile has been updated.If it isnt you, please contact us immidiately <p/>
+    <br/>
+    <br/>
+    <a href =${link}>${link}</a>
+    
+    <br/>
+    <br/>
+
+    <p>xyz company</p>
+    `, // html body
+  };
+  sendMail(emailInfo);
+};

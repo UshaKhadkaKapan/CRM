@@ -71,5 +71,6 @@ export const deletePaymentMethod = (_id) => {
 
 // admin user api
 export const updateAdminPassword = (obj) => {
-  return apiProcessor("patch", adminEP + obj);
+  console.log(obj);
+  return apiProcessor("patch", adminEP, obj);
 };
