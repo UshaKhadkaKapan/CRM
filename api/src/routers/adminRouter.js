@@ -1,4 +1,5 @@
 import express from "express";
+import { updatePassword } from "../middlewares/validationMiddleware.js";
 const router = express.Router();
 
 router.get("/", (req, res, next) => {
@@ -37,7 +38,7 @@ router.put("/", (req, res, next) => {
 
 //   update admin password as loggied in user
 
-router.patch("/", (req, res, next) => {
+router.patch("/", updatePassword, (req, res, next) => {
   try {
     res.json({
       status: "success",

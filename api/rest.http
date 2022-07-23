@@ -123,7 +123,7 @@ PATCH http://localhost:8000/api/v1/admin
 Content-Type: application/json
 
 {
-    "password":"Usha",
-    "confirmPassword":"Usha",
+    "currentPassword":"1RamUsha",
+    "password":"1RamUsha",
     "email":"Khadkausha83@gmail.com"
 }
