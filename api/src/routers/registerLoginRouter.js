@@ -1,17 +1,22 @@
-import express, { Router } from "express";
+import express from "express";
 import { comparePassword, hashPassword } from "../helpers/bcryptHelper.js";
 import {
   adminRegistrationValidation,
   loginValidation,
 } from "../middlewares/validationMiddleware.js";
 import {
-  addVerificationCodeByUserId,
   createNewAdmin,
   getOndAdmin,
   updateAdmin,
 } from "../models/adminUser/AdminModel.js";
 import { v4 as uuidv4 } from "uuid";
-import { sendAdminUserVerificationMail } from "../helpers/emailHelper.js";
+import {
+  emailPasswordResetOPT,
+  sendAdminUserVerificationMail,
+} from "../helpers/emailHelper.js";
+
+import { randomNumberGenerator } from "../utils/randomGenerator.js";
+import { insertSession } from "../models/session/SessionModal.js";
 const route = express.Router();
 
 route.post("/", adminRegistrationValidation, async (req, res, next) => {
@@ -110,5 +115,50 @@ route.post("/login", loginValidation, async (req, res, next) => {
     next(error);
   }
 });
+
+// request otp or password reset
+route.post("/otp-request", async (req, res, next) => {
+  try {
+    const { email } = req.body;
+
+    if (email.length > 4 && email.length < 50) {
+      // find the user if it exist
+
+      const user = await getOndAdmin({ email });
+      if (user?._id) {
+        const otpLength = 6;
+        const otp = randomNumberGenerator(otpLength);
+        console.log("hi");
+        const obj = {
+          token: otp,
+          associate: email,
+          type: "updatePassword",
+        };
+        const result = await insertSession(obj);
+        console.log(result);
+        if (result?._id) {
+          const mailInfo = {
+            fName: user.fName,
+            email: user.email,
+            otp,
+          };
+          console.log(mailInfo);
+          emailPasswordResetOPT(mailInfo);
+        }
+      }
+      // generate random 6 digits opt
+      // send otp to the user
+      // respond to the user
+    }
+    res.json({
+      status: "error",
+      message:
+        "if your email exist in register, we will send you opt please follow the instruction",
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+// reset new password
 
 export default route;

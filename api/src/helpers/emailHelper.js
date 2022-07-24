@@ -84,3 +84,26 @@ export const profileUpdatedVerificationMail = (userObj) => {
   };
   sendMail(emailInfo);
 };
+
+export const emailPasswordResetOPT = (obj) => {
+  const emailInfo = {
+    from: '"ABC store" ' + process.env.MAIL_USER,
+    to: obj.email, // list of receivers
+    subject: "OTP for password Reset", // Subject line
+    text: `Hi ${obj.otp}, Please follow the following OTP to reset the password`, // plain text body
+    html: `
+    <p>Hello ${obj.fName}</p>
+    <br/>
+    <br/>
+    <p>Please follow the following OTP to reset the password <p/>
+    <br/>
+    <br/>
+    <span style="color:red; font-size:2rem; font-weight: bolder;"> ${obj.otp}</span>
+    <br/>
+    <br/>
+
+    <p>ABC store</p>
+    `, // html body
+  };
+  sendMail(emailInfo);
+};

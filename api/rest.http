@@ -43,6 +43,23 @@ Content-Type: application/json
 }
 
 
+### request otp for password reset
+POST http://localhost:8000/api/v1/register-login/otp-request
+Content-Type: application/json
+
+{
+    "email":"Khadkausha83@gmail.com"
+}
+
+### rest new password
+PATCH http://localhost:8000/api/v1/register-login/password
+Content-Type: application/json
+
+{
+    "email":"Khadkausha83@gmail.com",
+    "otp":146888,
+    "password":"123456"
+}
 ### post category
 POST http://localhost:8000/api/v1/category
 Content-Type: application/json
@@ -142,3 +159,4 @@ Content-Type: application/json
    "currentPassword":"Usha123"
 
 }
+
