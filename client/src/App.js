@@ -14,6 +14,7 @@ import User from "./pages/users/User";
 import Orders from "./pages/orders/Orders";
 import Settings from "./pages/settings/Settings";
 import AdminProfile from "./pages/admin-profile/AdminProfile";
+import ResetPassword from "./pages/resetPassword/ResetPassword";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/" element={<Login />} />
           <Route path="/register" element={<Registeration />} />
           <Route path="/admin-verification" element={<Emailverification />} />
+          <Route path="/password-reset" element={<ResetPassword />} />
 
           {/* private routes TODO */}
           <Route path="/dashboard" element={<DashBoard />} />

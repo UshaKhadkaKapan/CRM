@@ -78,3 +78,8 @@ export const updateAdminPassword = (obj) => {
 export const updateAdminProfile = (obj) => {
   return apiProcessor("put", adminEP, obj);
 };
+
+// password reset
+export const requestOTP = (obj) => {
+  return apiProcessor("post", loginRegisterEP + "/otp-request", obj);
+};
