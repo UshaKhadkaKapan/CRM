@@ -7,6 +7,7 @@ import {
   joiValidator,
   LNAME,
   LONGSTR,
+  OTP,
   PASSWORD,
   PHONE,
   SHORTSTR,
@@ -105,6 +106,16 @@ export const updateAdminPasswordValidation = (req, res, next) => {
     email: EMAIL,
     currentPassword: PASSWORD,
     address: ADDRESS,
+  });
+
+  joiValidator(schema, req, res, next);
+};
+
+export const resetPasswordValidation = (req, res, next) => {
+  const schema = Joi.object({
+    email: EMAIL,
+    password: PASSWORD,
+    otp: OTP.required(),
   });
 
   joiValidator(schema, req, res, next);

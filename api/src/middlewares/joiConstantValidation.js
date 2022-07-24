@@ -14,6 +14,7 @@ export const STATUS = Joi.string().min(3).max(50).required();
 
 export const SHORTSTR = Joi.string().max(100);
 export const LONGSTR = Joi.string().max(5000);
+export const OTP = Joi.string().max(6);
 
 export const joiValidator = (schema, req, res, next) => {
   const { error } = schema.validate(req.body);

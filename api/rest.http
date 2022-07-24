@@ -57,7 +57,7 @@ Content-Type: application/json
 
 {
     "email":"Khadkausha83@gmail.com",
-    "otp":146888,
+    "otp":"588976",
     "password":"123456"
 }
 ### post category

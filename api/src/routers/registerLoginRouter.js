@@ -3,6 +3,7 @@ import { comparePassword, hashPassword } from "../helpers/bcryptHelper.js";
 import {
   adminRegistrationValidation,
   loginValidation,
+  resetPasswordValidation,
 } from "../middlewares/validationMiddleware.js";
 import {
   createNewAdmin,
@@ -12,11 +13,15 @@ import {
 import { v4 as uuidv4 } from "uuid";
 import {
   emailPasswordResetOPT,
+  profileUpdatedVerificationMail,
   sendAdminUserVerificationMail,
 } from "../helpers/emailHelper.js";
 
 import { randomNumberGenerator } from "../utils/randomGenerator.js";
-import { insertSession } from "../models/session/SessionModal.js";
+import {
+  deleteSession,
+  insertSession,
+} from "../models/session/SessionModal.js";
 const route = express.Router();
 
 route.post("/", adminRegistrationValidation, async (req, res, next) => {
@@ -128,7 +133,7 @@ route.post("/otp-request", async (req, res, next) => {
       if (user?._id) {
         const otpLength = 6;
         const otp = randomNumberGenerator(otpLength);
-        console.log("hi");
+
         const obj = {
           token: otp,
           associate: email,
@@ -151,7 +156,7 @@ route.post("/otp-request", async (req, res, next) => {
       // respond to the user
     }
     res.json({
-      status: "error",
+      status: "success",
       message:
         "if your email exist in register, we will send you opt please follow the instruction",
     });
@@ -160,5 +165,45 @@ route.post("/otp-request", async (req, res, next) => {
   }
 });
 // reset new password
+
+route.patch("/password", resetPasswordValidation, async (req, res, next) => {
+  try {
+    const { email, otp, password } = req.body;
+
+    const filter = {
+      token: otp,
+      associate: email,
+      type: "updatePassword",
+    };
+
+    // first chaeck if otp and email combination exist in the session table and delete it
+
+    const isDeleted = await deleteSession(filter);
+    console.log(isDeleted);
+    if (isDeleted?._id) {
+      // encrypt password
+      const obj = {
+        password: hashPassword(password),
+      };
+      // update pasword in the user table
+      const result = await updateAdmin({ email }, obj);
+      if (result?._id) {
+        // send email Notificationof account update
+        profileUpdatedVerificationMail(result);
+        return res.json({
+          status: "success",
+          message: "you may login in now",
+        });
+      }
+    }
+
+    res.json({
+      status: "error",
+      message: "unable to reset your password. try again later",
+    });
+  } catch (error) {
+    next(error);
+  }
+});
 
 export default route;

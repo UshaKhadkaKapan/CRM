@@ -74,7 +74,7 @@ export const profileUpdatedVerificationMail = (userObj) => {
     <p>we have just notic that your profile has been updated.If it isnt you, please contact us immidiately <p/>
     <br/>
     <br/>
-    <a href =${link}>${link}</a>
+    
     
     <br/>
     <br/>
