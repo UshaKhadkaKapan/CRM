@@ -2,11 +2,17 @@ import React, { useState } from "react";
 import { Alert, Form } from "react-bootstrap";
 import { toast } from "react-toastify";
 import CustomInput from "../../component/custom-input/CustomInput";
-import { requestOTP } from "../../helper/axios-helper";
+import { requestOTP, resetPassword } from "../../helper/axios-helper";
 import MainLayout from "../../layout/MainLayout";
 
+const initialState = {
+  otp: "",
+  password: "",
+  confirmPassword: "",
+};
+
 const ResetPassword = () => {
-  const [showForm, setShowForm] = useState("password");
+  const [showForm, setShowForm] = useState("otp");
   const [email, setEmail] = useState("");
   const [form, setForm] = useState({});
   const [error, setError] = useState("kwsjjs");
@@ -72,6 +78,14 @@ const ResetPassword = () => {
   const handleOnSubmit = async (e) => {
     e.preventDefault();
     console.log(form);
+
+    const { confirmPassword, ...rest } = form;
+    const responsePromise = resetPassword({ ...rest, email });
+    toast.promise(responsePromise, { pending: "please wait" });
+    const { status, message } = await responsePromise;
+    toast[status](message);
+
+    status === "success" && setForm(initialState);
   };
 
   const otpRequest = [
@@ -90,6 +104,7 @@ const ResetPassword = () => {
       placeholder: "123456",
       type: "number",
       required: true,
+      value: form.otp,
     },
     {
       label: "New Password",
@@ -97,6 +112,7 @@ const ResetPassword = () => {
       placeholder: "******",
       type: "password",
       required: true,
+      value: form.password,
     },
     {
       label: " Confirm Password",
@@ -104,6 +120,7 @@ const ResetPassword = () => {
       placeholder: "*******",
       type: "password",
       required: true,
+      value: form.confirmPassword,
     },
   ];
   console.log(form);
@@ -178,6 +195,9 @@ const ResetPassword = () => {
             >
               {" "}
               Request OTP again
+            </div>
+            <div className="text-end">
+              <a href="/">Login</a>
             </div>
           </Form>
         )}
