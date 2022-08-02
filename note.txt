@@ -1,0 +1,16 @@
+step 1
+Server only
+-create token
+- checked weather user is authenticated with their email and password
+  - if yes : use user email  as payLoad
+    -create access JWT and store in the session table in the database 
+    -create refresh JWT and store in the session table 
+  -else:
+    - response 401 on authenticated
+
+Client side only
+-send login form to the Server
+-if receive token:
+  -store accessJWT in the sessionStorage
+  -store refreshJWT in the localStorage
+  - redirect user to the dashboard or the  page the come form
