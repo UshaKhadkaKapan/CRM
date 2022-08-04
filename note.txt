@@ -5,6 +5,7 @@ Server only
   - if yes : use user email  as payLoad
     -create access JWT and store in the session table in the database 
     -create refresh JWT and store in the session table 
+    -response both token to client
   -else:
     - response 401 on authenticated
 

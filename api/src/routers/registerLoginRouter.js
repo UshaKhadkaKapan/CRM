@@ -22,6 +22,7 @@ import {
   deleteSession,
   insertSession,
 } from "../models/session/SessionModal.js";
+import { createJWTs } from "../helpers/jwtHelper.js";
 const route = express.Router();
 
 route.post("/", adminRegistrationValidation, async (req, res, next) => {
@@ -100,16 +101,20 @@ route.post("/login", loginValidation, async (req, res, next) => {
       const isMatch = comparePassword(password, result.password);
       result.password = undefined;
       if (isMatch) {
-        return result.status === "active"
-          ? res.json({
-              status: "success",
-              message: "Login success",
-              result,
-            })
-          : res.json({
-              status: "error",
-              message: "Your account is invalid",
-            });
+        const tokens = await createJWTs({ email });
+        if (result.status === "active") {
+          res.json({
+            status: "success",
+            message: "Login success",
+            result,
+            ...tokens,
+          });
+        } else {
+          res.json({
+            status: "error",
+            message: "Your account is invalid",
+          });
+        }
       }
     }
     res.json({
