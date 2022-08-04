@@ -100,6 +100,7 @@ route.post("/login", loginValidation, async (req, res, next) => {
     if (result?._id) {
       const isMatch = comparePassword(password, result.password);
       result.password = undefined;
+      result.refreshJWT = undefined;
       if (isMatch) {
         const tokens = await createJWTs({ email });
         if (result.status === "active") {
