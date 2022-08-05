@@ -3,9 +3,15 @@ GET http://localhost:8000
 
 # ======= Admin registration and login
 
+### admin request new accessJWT
+GET http://localhost:8000/api/v1/admin/accessjwt
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IktoYWRrYXVzaGE4M0BnbWFpbC5jb20iLCJpYXQiOjE2NTk2NzE3NTQsImV4cCI6MTY2MjI2Mzc1NH0.b9dWetRu4WHrHJVuYXwbMboqDCINJGB8YRjzNWPqzR4
+
+
 
 ### fetch categories
-GET http://localhost:8000/api/v1/category/62c124f769b318838710e454
+GET http://localhost:8000/api/v1/category/
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IktoYWRrYXVzaGE4M0BnbWFpbC5jb20iLCJpYXQiOjE2NTk2MDgxMjksImV4cCI6MTY1OTYwOTAyOX0.OrkRMLUcuH85JGAVdgjayRG06bFrURj4upTa6QjITYc
 
 ### Admin user registration
 POST http://localhost:8000/api/v1/register-login
@@ -39,7 +45,7 @@ Content-Type: application/json
 
 {
     "email":"Khadkausha83@gmail.com",
-    "password":"123456"
+    "password":"Usha123"
 }
 
 

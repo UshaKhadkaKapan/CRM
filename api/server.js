@@ -24,7 +24,7 @@ import { adminAuth } from "./src/middlewares/authMiddleware.js";
 
 app.use("/api/v1/register-login", registerLoginRouter),
   app.use("/api/v1/category", adminAuth, categoriesRouter);
-app.use("/api/v1/paymentMethod", paymentMethod);
+app.use("/api/v1/paymentMethod", adminAuth, paymentMethod);
 app.use("/api/v1/admin", adminRouter);
 
 app.get("/", (req, res) => {
