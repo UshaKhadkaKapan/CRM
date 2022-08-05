@@ -17,5 +17,8 @@ export const loginAction = (obj) => async (dispatch) => {
   console.log(result);
   // show toastify message , success or error
   // if response comes succes them call setUser and pass the user data
-  status === "success" && dispatch(setUser(result));
+  if (status === "success") {
+    dispatch(setUser(result));
+    sessionStorage.setItem("accessJWT", result.accessJWT);
+  }
 };
