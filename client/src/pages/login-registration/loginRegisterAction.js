@@ -24,3 +24,9 @@ export const loginAction = (obj) => async (dispatch) => {
     localStorage.setItem("refreshJWT", refreshJWT);
   }
 };
+
+export const adminLogout = () => (dispatch) => {
+  sessionStorage.removeItem("accessJWT");
+  localStorage.removeItem("refreshJWT");
+  dispatch(setUser({}));
+};

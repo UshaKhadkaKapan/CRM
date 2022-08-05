@@ -3,6 +3,7 @@ import { Button, ListGroup } from "react-bootstrap";
 import Offcanvas from "react-bootstrap/Offcanvas";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { adminLogout } from "../../pages/login-registration/loginRegisterAction";
 import { toggleShowSideMenu } from "../../pages/system-state/SystemSlice";
 
 export const Sildemenu = () => {
@@ -10,15 +11,8 @@ export const Sildemenu = () => {
 
   const { showSideMenu } = useSelector((state) => state.system);
 
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
-
   return (
     <>
-      {/* <Button variant="primary" onClick={handleShow}>
-        Launch
-      </Button> */}
-
       <Offcanvas
         show={showSideMenu}
         onHide={() => dispatch(toggleShowSideMenu())}
@@ -81,6 +75,12 @@ export const Sildemenu = () => {
             >
               <Link to="/adminprofile" className="nav-link">
                 Admin Profile
+              </Link>
+            </ListGroup.Item>
+            <ListGroup.Item onClick={() => dispatch(adminLogout())}>
+              <Link to="#" className="nav-link">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                Logout
               </Link>
             </ListGroup.Item>
           </ListGroup>
