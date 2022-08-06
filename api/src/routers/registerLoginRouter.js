@@ -110,14 +110,14 @@ route.post("/login", loginValidation, async (req, res, next) => {
       if (isMatch) {
         const tokens = await createJWTs({ email });
         if (result.status === "active") {
-          res.json({
+          return res.json({
             status: "success",
             message: "Login success",
             result,
             ...tokens,
           });
         } else {
-          res.json({
+          return res.json({
             status: "error",
             message: "Your account is invalid",
           });

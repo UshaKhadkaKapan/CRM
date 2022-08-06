@@ -1,6 +1,7 @@
 import Joi from "joi";
 import {
   ADDRESS,
+  DATE,
   DOB,
   EMAIL,
   FNAME,
@@ -131,9 +132,9 @@ export const newProductValidation = (req, res, next) => {
     price: PRICE.required(),
     qty: OTY.required(),
     salesPrice: PRICE,
-    salesStartDate: "2022/1/22",
-    salesEndDate: "2022/3/22",
-    catID: "hdjska436727",
+    salesStartDate: DATE,
+    salesEndDate: DATE,
+    catID: SHORTSTR.required(),
   });
 
   joiValidator(schema, req, res, next);

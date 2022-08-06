@@ -5,7 +5,7 @@ GET http://localhost:8000
 
 ### admin request new accessJWT
 GET http://localhost:8000/api/v1/admin/accessjwt
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IktoYWRrYXVzaGE4M0BnbWFpbC5jb20iLCJpYXQiOjE2NTk2NzE3NTQsImV4cCI6MTY2MjI2Mzc1NH0.b9dWetRu4WHrHJVuYXwbMboqDCINJGB8YRjzNWPqzR4
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IktoYWRrYXVzaGE4M0BnbWFpbC5jb20iLCJpYXQiOjE2NTk3NzU5NDUsImV4cCI6MTY2MjM2Nzk0NX0.H4yvL8ihwDyanguKDUsPeqWJb24-lr7Uqfznp2B-dfs
 
 
 
@@ -170,7 +170,8 @@ Content-Type: application/json
 ###
 POST http://localhost:8000/api/v1/product
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IktoYWRrYXVzaGE4M0BnbWFpbC5jb20iLCJpYXQiOjE2NTk3NjA4ODAsImV4cCI6MTY1OTc2MTc4MH0.dtvdZ7VZQx0ZbFVpROzyBUMtnLRE9ofF3Ac5vKj5-Yw
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IktoYWRrYXVzaGE4M0BnbWFpbC5jb20iLCJpYXQiOjE2NTk3NjI1MzIsImV4cCI6MTY1OTc2MzQzMn0.CXxBKUgwNhrTUXDyWs3-onI7fbSRYtYnzunQWyn11u4
+
 {
     "status":"active",
     "name":"mobile",
@@ -180,7 +181,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IktoYWRrYXVzaGE4
     "salesPrice":100,
     "salesStartDate":"2022/1/22",
     "salesEndDate":"2022/3/22",
-    "catID":"hdjska436727"
+    "catId":"hdjska436727"
 
 }
 
