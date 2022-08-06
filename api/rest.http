@@ -170,7 +170,7 @@ Content-Type: application/json
 ###
 POST http://localhost:8000/api/v1/product
 Content-Type: application/json
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IktoYWRrYXVzaGE4M0BnbWFpbC5jb20iLCJpYXQiOjE2NTk3NjI1MzIsImV4cCI6MTY1OTc2MzQzMn0.CXxBKUgwNhrTUXDyWs3-onI7fbSRYtYnzunQWyn11u4
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IktoYWRrYXVzaGE4M0BnbWFpbC5jb20iLCJpYXQiOjE2NTk3NzU5NDUsImV4cCI6MTY1OTc3Njg0NX0.WU1DWpL6d27S4ULEQXAJO70AHOlzlaprWfTiVJugumk
 
 {
     "status":"active",
@@ -185,3 +185,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IktoYWRrYXVzaGE4
 
 }
 
+
+###get all the product
+GET http://localhost:8000/api/v1/product
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IktoYWRrYXVzaGE4M0BnbWFpbC5jb20iLCJpYXQiOjE2NTk3NzU5NDUsImV4cCI6MTY1OTc3Njg0NX0.WU1DWpL6d27S4ULEQXAJO70AHOlzlaprWfTiVJugumk

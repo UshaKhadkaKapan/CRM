@@ -2,6 +2,7 @@ import express from "express";
 import slugify from "slugify";
 import { newProductValidation } from "../middlewares/validationMiddleware.js";
 import { insertProduct } from "../models/product/ProductModel.js";
+import { getMultipleProducts } from "../models/product/ProductModel.js";
 const route = express.Router();
 
 route.post("/", newProductValidation, async (req, res, next) => {
@@ -9,10 +10,12 @@ route.post("/", newProductValidation, async (req, res, next) => {
     console.log(req.body);
 
     // create slug
-    req.body.slug = slugify(req.body.name, {
+    const slug = slugify(req.body.name, {
       lower: true,
       trim: true,
     });
+    console.log(slug);
+    req.body.slug = slug;
     const product = await insertProduct(req.body);
     product?._id
       ? res.json({
@@ -29,6 +32,20 @@ route.post("/", newProductValidation, async (req, res, next) => {
       error.message =
         "Product with same name has been already exist. Please change the name and try again later";
     }
+    next(error);
+  }
+});
+
+route.get("/", async (req, res, next) => {
+  try {
+    const product = await getMultipleProducts();
+
+    res.json({
+      status: "success",
+      message: "Products Lists",
+      product,
+    });
+  } catch (error) {
     next(error);
   }
 });
