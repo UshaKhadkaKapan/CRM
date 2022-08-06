@@ -11,8 +11,7 @@ Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IktoYWRrYXVzaGE4M
 
 ### fetch categories
 GET http://localhost:8000/api/v1/category/
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IktoYWRrYXVzaGE4M0BnbWFpbC5jb20iLCJpYXQiOjE2NTk2MDgxMjksImV4cCI6MTY1OTYwOTAyOX0.OrkRMLUcuH85JGAVdgjayRG06bFrURj4upTa6QjITYc
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IktoYWRrYXVzaGE4M0BnbWFpbC5jb20iLCJpYXQiOjE2NTk3NjA4ODAsImV4cCI6MTY1OTc2MTc4MH0.dtvdZ7VZQx0ZbFVpROzyBUMtnLRE9ofF3Ac5vKj5-Yw
 ### Admin user registration
 POST http://localhost:8000/api/v1/register-login
 Content-Type: application/json
@@ -163,6 +162,25 @@ Content-Type: application/json
    "lName":"khadka",
    "phone":"33333",
    "currentPassword":"Usha123"
+
+}
+
+
+# post method for product
+###
+POST http://localhost:8000/api/v1/product
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IktoYWRrYXVzaGE4M0BnbWFpbC5jb20iLCJpYXQiOjE2NTk3NjA4ODAsImV4cCI6MTY1OTc2MTc4MH0.dtvdZ7VZQx0ZbFVpROzyBUMtnLRE9ofF3Ac5vKj5-Yw
+{
+    "status":"active",
+    "name":"mobile",
+    "description":"Mobile is awesome",
+    "price":200,
+    "qty":44,
+    "salesPrice":100,
+    "salesStartDate":"2022/1/22",
+    "salesEndDate":"2022/3/22",
+    "catID":"hdjska436727"
 
 }
 
