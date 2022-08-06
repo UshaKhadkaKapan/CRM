@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import ProductTable from "../../component/product-table/ProductTable";
 import AdminLayout from "../../layout/AdminLayout";
 
 const Product = () => {
@@ -15,7 +16,10 @@ const Product = () => {
         </Link>
       </div>
       <hr />
-      <div className="product-list">{/* show table component here */}</div>
+      <div className="product-list">
+        {/* show table component here */}
+        <ProductTable />
+      </div>
     </AdminLayout>
   );
 };
