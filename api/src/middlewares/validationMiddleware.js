@@ -8,8 +8,10 @@ import {
   LNAME,
   LONGSTR,
   OTP,
+  OTY,
   PASSWORD,
   PHONE,
+  PRICE,
   SHORTSTR,
   STATUS,
 } from "./joiConstantValidation.js";
@@ -123,15 +125,15 @@ export const resetPasswordValidation = (req, res, next) => {
 
 export const newProductValidation = (req, res, next) => {
   const schema = Joi.object({
-    status: "active",
-    //     "name":"mobile",
-    //     "description":"Mobile is awesome",
-    //     "price":200,
-    //     "qty":44,
-    //     "salesPrice":100,
-    //     "salesStartDate":"2022/1/22",
-    //     "salesEndDate":"2022/3/22",
-    //     "catID":"hdjska436727"
+    status: SHORTSTR.required(),
+    name: SHORTSTR.required(),
+    description: LONGSTR.required(),
+    price: PRICE.required(),
+    qty: OTY.required(),
+    salesPrice: PRICE,
+    salesStartDate: "2022/1/22",
+    salesEndDate: "2022/3/22",
+    catID: "hdjska436727",
   });
 
   joiValidator(schema, req, res, next);
