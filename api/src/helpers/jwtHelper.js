@@ -25,8 +25,8 @@ export const signRefreshJWT = async (payload) => {
   const obj = {
     refreshJWT,
   };
-  const email = payload.email;
-  await updateAdmin({ email }, obj);
+
+  await updateAdmin(payload, obj);
   return refreshJWT;
 };
 

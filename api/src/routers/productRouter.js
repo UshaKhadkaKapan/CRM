@@ -38,12 +38,12 @@ route.post("/", newProductValidation, async (req, res, next) => {
 
 route.get("/", async (req, res, next) => {
   try {
-    const product = await getMultipleProducts();
+    const products = await getMultipleProducts();
 
     res.json({
       status: "success",
       message: "Products Lists",
-      product,
+      products,
     });
   } catch (error) {
     next(error);
