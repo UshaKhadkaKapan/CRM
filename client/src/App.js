@@ -16,6 +16,7 @@ import Settings from "./pages/settings/Settings";
 import AdminProfile from "./pages/admin-profile/AdminProfile";
 import ResetPassword from "./pages/resetPassword/ResetPassword";
 import PrivateRouter from "./component/private-route/PrivateRouter";
+import NewProductPage from "./pages/products/newProductPage";
 
 const App = () => {
   return (
@@ -44,6 +45,15 @@ const App = () => {
               </PrivateRouter>
             }
           />
+          <Route
+            path="/product/new"
+            element={
+              <PrivateRouter>
+                <NewProductPage />
+              </PrivateRouter>
+            }
+          />
+
           <Route
             path="/products"
             element={

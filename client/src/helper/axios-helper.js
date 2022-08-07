@@ -50,19 +50,43 @@ export const loginAdminUser = (data) => {
 
 export const fetchCategory = (_id) => {
   const url = _id ? catEP + "/" + _id : catEP;
-  return apiProcessor("get", url);
+
+  const option = {
+    method: "get",
+    url,
+    privateAPI: true,
+  };
+  return apiProcessor(option);
 };
 
-export const postCategory = (obj) => {
-  return apiProcessor("post", catEP, obj);
+export const postCategory = (data) => {
+  const option = {
+    method: "post",
+    url: catEP,
+    data,
+    privateAPI: true,
+  };
+  return apiProcessor(option);
 };
 
-export const deleteCategory = (obj) => {
-  return apiProcessor("delete", catEP, obj);
+export const deleteCategory = (data) => {
+  const option = {
+    method: "delete",
+    url: catEP,
+    data,
+    privateAPI: true,
+  };
+  return apiProcessor(option);
 };
 
-export const updateCategory = (obj) => {
-  return apiProcessor("put", catEP, obj);
+export const updateCategory = (data) => {
+  const option = {
+    method: "put",
+    url: catEP,
+    data,
+    privateAPI: true,
+  };
+  return apiProcessor(option);
 };
 
 // api for paymentMethod
