@@ -11,7 +11,7 @@ const Login = () => {
   const { user } = useSelector((state) => state.adminUser);
 
   useEffect(() => {
-    user._id && dispatch(autoAdminLogin());
+    !user._id && dispatch(autoAdminLogin());
   }, [user]);
   console.log(user);
 

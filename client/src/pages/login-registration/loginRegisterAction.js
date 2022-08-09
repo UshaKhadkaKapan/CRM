@@ -32,8 +32,9 @@ export const adminLogout = () => (dispatch) => {
 };
 
 export const fetchUser = () => async (dispatch) => {
-  const result = await getAdminUser();
-  console.log(result);
+  const { status, user } = await getAdminUser();
+
+  status === "success" && dispatch(setUser(user));
 };
 
 export const autoAdminLogin = () => (dispatch) => {
@@ -43,5 +44,7 @@ export const autoAdminLogin = () => (dispatch) => {
   // if accessJWT is exist, fetch user and mount to the redux store
   // else
   // if refreshJWT is exist, fetch new accessJWT and mount to the redux store
-  dispatch(fetchUser());
+  if (accessJWT) {
+    dispatch(fetchUser());
+  }
 };
