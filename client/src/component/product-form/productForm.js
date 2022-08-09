@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Button, Form } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { getCategoryAction } from "../../pages/Categories/catAction";
 import CustomInput from "../custom-input/CustomInput";
 
 const ProductForm = () => {
+  const dispatch = useDispatch();
+  const { categories } = useSelector((state) => state.categories);
+
+  useEffect(() => {
+    // we need to fetch cat list if not in the state
+    !categories.length && dispatch(getCategoryAction());
+  }, []);
   const fields = [
     {
       label: "Name",
@@ -75,6 +84,15 @@ const ProductForm = () => {
         <Form.Group className="mb-3">
           <Form.Select defaultValue="" name="parentCatId" required>
             <option value="">--Select Option--</option>
+            {categories.map((item) => {
+              return (
+                item.parentCatId && (
+                  <option key={item._id} value={item._id}>
+                    {item.name}
+                  </option>
+                )
+              );
+            })}
           </Form.Select>
         </Form.Group>
 

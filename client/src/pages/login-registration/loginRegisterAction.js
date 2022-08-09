@@ -30,3 +30,8 @@ export const adminLogout = () => (dispatch) => {
   localStorage.removeItem("refreshJWT");
   dispatch(setUser({}));
 };
+
+export const autoAdmin = () => (dispatch) => {
+  const accessJWT = sessionStorage.getItem("accessJWT");
+  const refreshJWT = sessionStorage.getItem("refreshJWT");
+};
