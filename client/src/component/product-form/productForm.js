@@ -1,11 +1,26 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategoryAction } from "../../pages/Categories/catAction";
 import CustomInput from "../custom-input/CustomInput";
 
+const initialState = {
+  status: "inactive",
+  parentCatId: null,
+  name: "",
+  sku: "",
+  description: "",
+  price: 0,
+  qty: 0,
+  salesPrice: 0,
+  salesStartDate: null,
+  salesEndDate: null,
+};
+
 const ProductForm = () => {
   const dispatch = useDispatch();
+  const [form, setForm] = useState(initialState);
+  const [images, setImages] = useState([]);
   const { categories } = useSelector((state) => state.categories);
 
   useEffect(() => {
@@ -75,14 +90,52 @@ const ProductForm = () => {
       accept: "image/*",
     },
   ];
+
+  const handleOnChange = (e) => {
+    const { checked, name, value, files } = e.target;
+
+    if (name === "images") {
+      return setImages(files);
+    }
+    if (name === "status") {
+      value = checked ? "active" : "inactive";
+    }
+
+    setForm({ ...form, [name]: value });
+  };
+
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+
+    for (const key in form) {
+      formData.append(key, form[key]);
+    }
+    images.length && [...images].map((img) => formData.append("images".img));
+
+    for (const key of formData.key()) {
+      console.log(key);
+    }
+  };
+
   return (
     <div className="py-3">
-      <Form>
+      <Form onSubmit={handleOnSubmit}>
         <Form.Group className="mb-3">
-          <Form.Check type="switch" label="status" name="status" />
+          <Form.Check
+            type="switch"
+            label="status"
+            name="status"
+            onChange={handleOnChange}
+          />
         </Form.Group>
         <Form.Group className="mb-3">
-          <Form.Select defaultValue="" name="parentCatId" required>
+          <Form.Select
+            defaultValue=""
+            name="parentCatId"
+            required
+            onChange={handleOnChange}
+          >
             <option value="">--Select Option--</option>
             {categories.map((item) => {
               return (
@@ -97,7 +150,7 @@ const ProductForm = () => {
         </Form.Group>
 
         {fields.map((field, i) => (
-          <CustomInput {...field} />
+          <CustomInput {...field} onChange={handleOnChange} />
         ))}
       </Form>
       <Button variant="primary">Submit New Product</Button>

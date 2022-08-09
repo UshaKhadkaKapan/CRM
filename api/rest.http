@@ -187,5 +187,5 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IktoYWRrYXVzaGE4
 
 
 ###get all the product
-GET http://localhost:8000/api/v1/product
+GETP http://localhost:8000/api/v1/product
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IktoYWRrYXVzaGE4M0BnbWFpbC5jb20iLCJpYXQiOjE2NTk3NzU5NDUsImV4cCI6MTY1OTc3Njg0NX0.WU1DWpL6d27S4ULEQXAJO70AHOlzlaprWfTiVJugumk

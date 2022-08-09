@@ -1,5 +1,4 @@
 import axios from "axios";
-
 const rootUrl = "http://localhost:8000/api/v1";
 const loginRegisterEP = rootUrl + "/register-login";
 const loginEp = loginRegisterEP + "/login";
@@ -7,12 +6,13 @@ const catEP = rootUrl + "/category";
 const paymentMethodEP = rootUrl + "/paymentMethod";
 const adminEP = rootUrl + "/admin";
 const productEP = rootUrl + "/product";
+const jwtEP = adminEP + "/accessjwt";
 
-const apiProcessor = async ({ method, url, data, privateAPI }) => {
+const apiProcessor = async ({ method, url, data, privateAPI, token }) => {
   try {
     const headers = privateAPI
       ? {
-          Authorization: sessionStorage.getItem("accessJWT"),
+          Authorization: token || sessionStorage.getItem("accessJWT"),
         }
       : null;
 
@@ -24,9 +24,30 @@ const apiProcessor = async ({ method, url, data, privateAPI }) => {
     });
     return response.data;
   } catch (error) {
+    let message = error.message;
+
+    if (error.message && error.message.response === 401) {
+      sessionStorage.removeItem("accessJWT");
+      localStorage.removeItem("refreshJWT");
+
+      return {
+        status: "error",
+        message: "Unauthenticated",
+      };
+    }
+
+    if (error.message && error.message.data) {
+      message = error.message.data.message;
+    }
+
+    if (message === "jwt expired") {
+      const token = await requestNewAccessJWT();
+
+      return apiProcessor({ method, url, data, privateAPI, token });
+    }
     return {
       status: "error",
-      message: error.message,
+      message,
     };
   }
 };
@@ -155,4 +176,18 @@ export const getProducts = () => {
   };
 
   return apiProcessor(option);
+};
+
+// jwt api
+
+export const requestNewAccessJWT = async () => {
+  const option = {
+    method: "get",
+    url: jwtEP,
+    privateAPI: true,
+    token: localStorage.getItem("refreshJWT"),
+  };
+  const { accessJWT } = await apiProcessor(option);
+  sessionStorage.setItem("accessJWT", accessJWT);
+  return accessJWT;
 };
