@@ -1,4 +1,4 @@
-import { loginAdminUser } from "../../helper/axios-helper";
+import { getAdminUser, loginAdminUser } from "../../helper/axios-helper";
 import { setUser } from "./loginRegisterSlice";
 import { toast } from "react-toastify";
 
@@ -31,7 +31,17 @@ export const adminLogout = () => (dispatch) => {
   dispatch(setUser({}));
 };
 
-export const autoAdmin = () => (dispatch) => {
+export const fetchUser = () => async (dispatch) => {
+  const result = await getAdminUser();
+  console.log(result);
+};
+
+export const autoAdminLogin = () => (dispatch) => {
   const accessJWT = sessionStorage.getItem("accessJWT");
   const refreshJWT = sessionStorage.getItem("refreshJWT");
+
+  // if accessJWT is exist, fetch user and mount to the redux store
+  // else
+  // if refreshJWT is exist, fetch new accessJWT and mount to the redux store
+  dispatch(fetchUser());
 };

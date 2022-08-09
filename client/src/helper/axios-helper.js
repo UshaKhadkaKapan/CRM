@@ -107,13 +107,33 @@ export const deletePaymentMethod = (_id) => {
 };
 
 // admin user api
-export const updateAdminPassword = (obj) => {
-  console.log(obj);
-  return apiProcessor("patch", adminEP, obj);
+export const updateAdminPassword = (data) => {
+  const option = {
+    method: "patch",
+    url: adminEP,
+    data,
+    privateAPI: true,
+  };
+  return apiProcessor(option);
 };
 
-export const updateAdminProfile = (obj) => {
-  return apiProcessor("put", adminEP, obj);
+export const updateAdminProfile = (data) => {
+  const option = {
+    method: "put",
+    url: adminEP,
+    data,
+    privateAPI: true,
+  };
+  return apiProcessor(option);
+};
+
+export const getAdminUser = () => {
+  const option = {
+    method: "get",
+    url: adminEP,
+    privateAPI: true,
+  };
+  return apiProcessor(option);
 };
 
 // password reset
