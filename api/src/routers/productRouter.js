@@ -8,6 +8,11 @@ const route = express.Router();
 route.post("/", newProductValidation, async (req, res, next) => {
   try {
     console.log(req.body);
+    if (!req.body) {
+      return {
+        message: "todo",
+      };
+    }
 
     // create slug
     const slug = slugify(req.body.name, {

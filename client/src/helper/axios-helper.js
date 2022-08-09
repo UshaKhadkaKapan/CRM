@@ -178,6 +178,16 @@ export const getProducts = () => {
   return apiProcessor(option);
 };
 
+export const postProducts = (data) => {
+  const option = {
+    method: "post",
+    url: productEP,
+    privateAPI: true,
+    data,
+  };
+
+  return apiProcessor(option);
+};
 // jwt api
 
 export const requestNewAccessJWT = async () => {

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { getCategoryAction } from "../../pages/Categories/catAction";
+import { postProductionAction } from "../../pages/products/productAction";
 import CustomInput from "../custom-input/CustomInput";
 
 const initialState = {
@@ -116,6 +117,8 @@ const ProductForm = () => {
     for (const key of formData.key()) {
       console.log(key);
     }
+
+    dispatch(postProductionAction(formData));
   };
 
   return (
