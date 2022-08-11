@@ -17,6 +17,7 @@ import AdminProfile from "./pages/admin-profile/AdminProfile";
 import ResetPassword from "./pages/resetPassword/ResetPassword";
 import PrivateRouter from "./component/private-route/PrivateRouter";
 import NewProductPage from "./pages/products/newProductPage";
+import EditProductPage from "./pages/products/editProductPage";
 
 const App = () => {
   return (
@@ -67,7 +68,7 @@ const App = () => {
             path="/product/edit/:_id"
             element={
               <PrivateRouter>
-                <Product />
+                <EditProductPage />
               </PrivateRouter>
             }
           />
