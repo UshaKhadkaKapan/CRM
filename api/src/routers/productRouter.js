@@ -1,8 +1,12 @@
 import express from "express";
 import slugify from "slugify";
 import { newProductValidation } from "../middlewares/validationMiddleware.js";
-import { insertProduct } from "../models/product/ProductModel.js";
-import { getMultipleProducts } from "../models/product/ProductModel.js";
+
+import {
+  getMultipleProducts,
+  getProduct,
+  insertProduct,
+} from "../models/product/ProductModel.js";
 const route = express.Router();
 
 // multer is middleware to support formData or uploading files
@@ -64,9 +68,12 @@ route.post(
   }
 );
 
-route.get("/", async (req, res, next) => {
+route.get("/:_id?", async (req, res, next) => {
   try {
-    const products = await getMultipleProducts();
+    const { _id } = req.params;
+    const products = _id
+      ? await getProduct({ _id })
+      : await getMultipleProducts();
 
     res.json({
       status: "success",

@@ -178,6 +178,16 @@ export const getProducts = () => {
   return apiProcessor(option);
 };
 
+export const getSingleProducts = (_id) => {
+  const option = {
+    method: "get",
+    url: productEP + "/" + _id,
+    privateAPI: true,
+  };
+
+  return apiProcessor(option);
+};
+
 export const postProducts = (data) => {
   const option = {
     method: "post",

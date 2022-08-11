@@ -24,15 +24,18 @@ const EditProductForm = () => {
   const [form, setForm] = useState(initialState);
   const [images, setImages] = useState([]);
   const { categories } = useSelector((state) => state.categories);
+  const { selectedProduct } = useSelector((state) => state.products);
 
   useEffect(() => {
     // we need to fetch cat list if not in the state
     !categories.length && dispatch(getCategoryAction());
-  }, []);
+    setForm(selectedProduct);
+  }, [selectedProduct]);
   const fields = [
     {
       label: "Name",
       name: "name",
+      value: form.name,
       type: "text",
       placeholder: "Enter Product Name",
       required: true,
@@ -40,13 +43,17 @@ const EditProductForm = () => {
     {
       label: "SKU",
       name: "sku",
+      value: form.sku,
       type: "text",
       placeholder: "Unique product key",
       required: true,
+      disabled: true,
+      //   disabled means cannot changed
     },
     {
       label: "QTY",
       name: "qty",
+      value: form.qty,
       type: "number",
       placeholder: "50",
       required: true,
@@ -54,6 +61,7 @@ const EditProductForm = () => {
     {
       label: "Price",
       name: "price",
+      value: form.price,
       type: "number",
       placeholder: "100",
       required: true,
@@ -61,22 +69,26 @@ const EditProductForm = () => {
     {
       label: "Sales Price",
       name: "salesPrice",
+      value: form.salesPrice,
       type: "number",
       placeholder: "80",
     },
     {
       label: "Sales start date",
       name: "salesStartDate",
+      value: form.salesStartDate,
       type: "date",
     },
     {
       label: "Sales end date",
       name: "salesEndDate",
+      value: form.salesEndDate,
       type: "date",
     },
     {
       label: "Description",
       name: "description",
+      value: form.description,
       as: "textarea",
       placeholder: "Write product details",
       required: true,
