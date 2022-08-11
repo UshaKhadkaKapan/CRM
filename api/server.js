@@ -5,6 +5,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import cors from "cors";
 const PORT = process.env.PORT || 8000;
+import path from "path";
 
 // use middleware
 app.use(cors());
@@ -28,6 +29,11 @@ app.use("/api/v1/register-login", registerLoginRouter),
 app.use("/api/v1/paymentMethod", adminAuth, paymentMethod);
 app.use("/api/v1/admin", adminRouter);
 app.use("/api/v1/product", adminAuth, productRouter);
+
+// server public folder as static folder
+
+const __dirname = path.resolve();
+app.use(express.static(path.join(__dirname, "public")));
 
 app.get("/", (req, res) => {
   res.json({

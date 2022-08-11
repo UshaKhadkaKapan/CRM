@@ -31,7 +31,7 @@ route.post(
       const files = req.files;
       console.log(files);
 
-      const images = files.map((img) => img.path);
+      const images = files.map((img) => img.path.substr(7));
       // create slug
       const slug = slugify(req.body.name, {
         lower: true,

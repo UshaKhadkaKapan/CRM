@@ -62,6 +62,16 @@ const App = () => {
               </PrivateRouter>
             }
           />
+
+          <Route
+            path="/product/edit/:_id"
+            element={
+              <PrivateRouter>
+                <Product />
+              </PrivateRouter>
+            }
+          />
+
           <Route
             path="/paymentmethod"
             element={

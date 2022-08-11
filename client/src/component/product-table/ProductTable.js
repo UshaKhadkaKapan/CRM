@@ -3,6 +3,7 @@ import { Button, Col, Row, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchProductionAction } from "../../pages/products/productAction";
 import { Link } from "react-router-dom";
+const API_ROOT_URL = "http://localhost:8000";
 
 const ProductTable = () => {
   const dispatch = useDispatch();
@@ -41,7 +42,12 @@ const ProductTable = () => {
                   <tr key={item._id}>
                     <td>{i + 1}</td>
                     <td>
-                      <img src={item.thumbnail} alt="image" width="150px" />
+                      <img
+                        src={API_ROOT_URL + item.thumbnail}
+                        alt="image"
+                        width="150px"
+                        crossOrigin="anonymous"
+                      />
                     </td>
                     <td>{item.status}</td>
                     <td>{item.name}</td>
