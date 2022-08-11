@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { getCategoryAction } from "../../pages/Categories/catAction";
 import { postProductionAction } from "../../pages/products/productAction";
 import CustomInput from "../custom-input/CustomInput";
 
 const initialState = {
   status: "inactive",
-  parentCatId: null,
+  catID: null,
   name: "",
   sku: "",
   description: "",
@@ -123,6 +124,11 @@ const ProductForm = () => {
 
   return (
     <div className="py-3">
+      <div className="py-3">
+        <Link to="/products">
+          <Button variant="secondary">&lt; Back</Button>
+        </Link>
+      </div>
       <Form onSubmit={handleOnSubmit}>
         <Form.Group className="mb-3">
           <Form.Check
@@ -135,7 +141,7 @@ const ProductForm = () => {
         <Form.Group className="mb-3">
           <Form.Select
             defaultValue=""
-            name="parentCatId"
+            name="catID"
             required
             onChange={handleOnChange}
           >

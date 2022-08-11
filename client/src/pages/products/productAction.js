@@ -15,5 +15,5 @@ export const postProductionAction = () => async (dispatch) => {
   const { status, message } = await responsePromise;
   toast[status](message);
 
-  status === "success" && dispatch(fetchProductionAction());
+  // status === "success" && dispatch(fetchProductionAction());
 };
