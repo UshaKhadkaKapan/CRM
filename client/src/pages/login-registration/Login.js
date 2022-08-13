@@ -13,7 +13,6 @@ const Login = () => {
   useEffect(() => {
     !user._id && dispatch(autoAdminLogin());
   }, [user]);
-  console.log(user);
 
   return (
     <MainLayout>
