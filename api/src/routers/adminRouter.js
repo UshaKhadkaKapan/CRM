@@ -13,6 +13,7 @@ const router = express.Router();
 
 router.get("/", adminAuth, (req, res, next) => {
   try {
+    console.log();
     const user = req.adminInfo;
     user.password = undefined;
     user.accessJWT = undefined;

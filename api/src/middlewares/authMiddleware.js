@@ -5,6 +5,7 @@ import { getSession } from "../models/session/SessionModal.js";
 export const adminAuth = async (req, res, next) => {
   try {
     const { authorization } = req.headers;
+
     if (authorization) {
       //is token valid
       const decode = verifyAccessToken(authorization);
@@ -20,7 +21,7 @@ export const adminAuth = async (req, res, next) => {
         // is exist in the session table
         const existInDB = await getSession({
           type: "jwt",
-          token: "authorization",
+          token: authorization,
         });
         // get the user information and do next
         if (existInDB?._id) {

@@ -52,12 +52,22 @@ const apiProcessor = async ({ method, url, data, privateAPI, token }) => {
   }
 };
 
-export const postAdminUser = (obj) => {
-  return apiProcessor("post", loginRegisterEP, obj);
+export const postAdminUser = (data) => {
+  const option = {
+    method: "post",
+    url: loginRegisterEP,
+    data,
+  };
+  return apiProcessor(option);
 };
 
-export const emailVerificationAdminUser = (obj) => {
-  return apiProcessor("patch", loginRegisterEP, obj);
+export const emailVerificationAdminUser = (data) => {
+  const option = {
+    method: "patch",
+    url: loginRegisterEP,
+    data,
+  };
+  return apiProcessor(option);
 };
 
 export const loginAdminUser = (data) => {
@@ -113,18 +123,41 @@ export const updateCategory = (data) => {
 // api for paymentMethod
 
 export const fetchPaymentMethod = () => {
-  return apiProcessor("get", paymentMethodEP);
+  const option = {
+    method: "get",
+    url: paymentMethodEP,
+    privateAPI: true,
+  };
+
+  return apiProcessor(option);
 };
-export const postPaymentMethod = (obj) => {
-  return apiProcessor("post", paymentMethodEP, obj);
+export const postPaymentMethod = (data) => {
+  const option = {
+    method: "post",
+    url: paymentMethodEP,
+    privateAPI: true,
+    data,
+  };
+  return apiProcessor(option);
 };
 
-export const putPaymentMethod = (obj) => {
-  return apiProcessor("put", paymentMethodEP, obj);
+export const putPaymentMethod = (data) => {
+  const option = {
+    method: "put",
+    url: paymentMethodEP,
+    privateAPI: true,
+    data,
+  };
+  return apiProcessor(option);
 };
 
 export const deletePaymentMethod = (_id) => {
-  return apiProcessor("delete", paymentMethodEP + "/" + _id);
+  const option = {
+    method: "delete",
+    url: paymentMethodEP + "/" + _id,
+    privateAPI: true,
+  };
+  return apiProcessor(option);
 };
 
 // admin user api
@@ -158,12 +191,22 @@ export const getAdminUser = () => {
 };
 
 // password reset
-export const requestOTP = (obj) => {
-  return apiProcessor("post", loginRegisterEP + "/otp-request", obj);
+export const requestOTP = (data) => {
+  const option = {
+    method: "post",
+    url: loginRegisterEP + "/otp-request",
+    data,
+  };
+  return apiProcessor(option);
 };
 
-export const resetPassword = (obj) => {
-  return apiProcessor("patch", loginRegisterEP + "/password", obj);
+export const resetPassword = (data) => {
+  const option = {
+    method: "patch",
+    url: loginRegisterEP + "/password",
+    data,
+  };
+  return apiProcessor(option);
 };
 
 // product call api
@@ -194,6 +237,26 @@ export const postProducts = (data) => {
     url: productEP,
     privateAPI: true,
     data,
+  };
+
+  return apiProcessor(option);
+};
+
+export const deleteProduct = (_id) => {
+  const option = {
+    method: "delete",
+    url: productEP + "/" + "_id",
+    privateAPI: true,
+  };
+
+  return apiProcessor(option);
+};
+
+export const updateProduct = (data) => {
+  const option = {
+    method: "put",
+    url: productEP,
+    privateAPI: true,
   };
 
   return apiProcessor(option);

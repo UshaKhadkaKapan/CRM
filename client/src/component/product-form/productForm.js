@@ -8,7 +8,7 @@ import CustomInput from "../custom-input/CustomInput";
 
 const initialState = {
   status: "inactive",
-  catID: null,
+  catId: null,
   name: "",
   sku: "",
   description: "",
@@ -113,11 +113,7 @@ const ProductForm = () => {
     for (const key in form) {
       formData.append(key, form[key]);
     }
-    images.length && [...images].map((img) => formData.append("images".img));
-
-    for (const key of formData.key()) {
-      console.log(key);
-    }
+    images.length && [...images].map((img) => formData.append("images", img));
 
     dispatch(postProductionAction(formData));
   };
@@ -141,7 +137,7 @@ const ProductForm = () => {
         <Form.Group className="mb-3">
           <Form.Select
             defaultValue=""
-            name="catID"
+            name="catId"
             required
             onChange={handleOnChange}
           >
@@ -161,8 +157,11 @@ const ProductForm = () => {
         {fields.map((field, i) => (
           <CustomInput {...field} onChange={handleOnChange} />
         ))}
+
+        <Button variant="primary" type="submit">
+          Submit New Product
+        </Button>
       </Form>
-      <Button variant="primary">Submit New Product</Button>
     </div>
   );
 };

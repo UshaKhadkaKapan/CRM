@@ -143,7 +143,35 @@ export const newProductValidation = (req, res, next) => {
     salesPrice: PRICE,
     salesStartDate: DATE,
     salesEndDate: DATE,
-    catID: SHORTSTR.allow("", null),
+    catId: SHORTSTR.allow("", null),
+  });
+
+  joiValidator(schema, req, res, next);
+};
+
+export const updateProductValidation = (req, res, next) => {
+  console.log(req.body, "======");
+
+  req.body.salesStartDate =
+    req.body.salesStartDate === "null" ? null : req.body.salesStartDate;
+
+  req.body.salesEndDate =
+    req.body.salesEndDate === "null" ? null : req.body.salesEndDate;
+
+  const schema = Joi.object({
+    _id: SHORTSTR.required(),
+    status: SHORTSTR.required(),
+    sku: SHORTSTR.required(),
+    name: SHORTSTR.required(),
+    description: LONGSTR.required(),
+    price: PRICE.required(),
+    qty: OTY.required(),
+    salesPrice: PRICE,
+    salesStartDate: DATE,
+    salesEndDate: DATE,
+    catId: SHORTSTR.allow("", null),
+    images: LONGSTR,
+    thumbnail: SHORTSTR,
   });
 
   joiValidator(schema, req, res, next);

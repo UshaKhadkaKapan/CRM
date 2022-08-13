@@ -43,7 +43,7 @@ const ProductTable = () => {
                     <td>{i + 1}</td>
                     <td>
                       <img
-                        src={API_ROOT_URL + item.thumbnail}
+                        src={API_ROOT_URL + "/" + item.thumbnail}
                         alt="image"
                         width="150px"
                         crossOrigin="anonymous"
@@ -55,8 +55,9 @@ const ProductTable = () => {
                     <td>${item.price}</td>
                     <td>${item.salesPrice}</td>
                     <td>
-                      {item.salesStartDate.slice(0, 10)} {" To "}
-                      {item.salesEndDate.slice(0, 10)}
+                      {item.salesStartDate && item.salesStartDate.slice(0, 10)}{" "}
+                      {" To "}
+                      {item.salesEndDate && item.salesEndDate.slice(0, 10)}
                     </td>
                     <td>
                       <Link to={`/product/edit/${item._id}`}>

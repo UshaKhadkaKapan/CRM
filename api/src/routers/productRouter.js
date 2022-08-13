@@ -1,11 +1,16 @@
-import express from "express";
+import express, { Router } from "express";
 import slugify from "slugify";
-import { newProductValidation } from "../middlewares/validationMiddleware.js";
+import {
+  newProductValidation,
+  updateProductValidation,
+} from "../middlewares/validationMiddleware.js";
 
 import {
+  deleteProduct,
   getMultipleProducts,
   getProduct,
   insertProduct,
+  updateProductById,
 } from "../models/product/ProductModel.js";
 const route = express.Router();
 
@@ -15,7 +20,7 @@ const fileStoragePath = "public/img/products";
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     let error = null;
-    cb(error);
+    cb(error, fileStoragePath);
   },
   filename: (req, file, cd) => {
     const fullFileName = Date.now() + "-" + file.originalname;
@@ -85,4 +90,60 @@ route.get("/:_id?", async (req, res, next) => {
   }
 });
 
+route.delete("/:_id", async (req, res, next) => {
+  try {
+    const { _id } = req.params;
+    const products = await deleteProduct({ _id });
+    product?._id
+      ? res.json({
+          status: "success",
+          message: "Product has been delete successfully.",
+        })
+      : res.json({
+          status: "error",
+          message: "Error, unable to delete it a product",
+        });
+    res.json({
+      status: "success",
+      message: "Products Lists",
+      products,
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+route.put(
+  "/",
+  upload.array("newImages", 5),
+  updateProductValidation,
+  async (req, res, next) => {
+    try {
+      const { _id, ...rest } = req.body;
+      const newImages = req.files;
+
+      const newImagePath = newImages.map((img) => img.path.substr(7));
+      const oldImgLinks = rest.images.split(",");
+      rest.images = [...newImagePath, ...oldImgLinks];
+
+      const product = await updateProductById(_id, rest);
+
+      product?._id
+        ? res.json({
+            status: "success",
+            message: "the product has been update",
+          })
+        : res.json({
+            status: "error",
+            message: "Unable to update the product and try again later",
+          });
+      // attach incomig req.body.images path to image property and send data to te server
+      console.log(images, data);
+      res.json({
+        status: "success",
+        message: "todo",
+      });
+    } catch (error) {}
+  }
+);
 export default route;

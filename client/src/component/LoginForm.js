@@ -28,7 +28,7 @@ const LoginForm = () => {
 
   const handleOnSubmit = async (e) => {
     e.preventDefault();
-    console.log(form);
+
     dispatch(loginAction(form));
   };
 

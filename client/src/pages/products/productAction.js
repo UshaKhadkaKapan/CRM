@@ -3,6 +3,7 @@ import {
   getProducts,
   getSingleProducts,
   postProducts,
+  updateProduct,
 } from "../../helper/axios-helper";
 import { setProduct, setSelectedProduct } from "./productSlice";
 
@@ -18,12 +19,22 @@ export const fetchSingleProductionAction = (_id) => async (dispatch) => {
   status === "success" && dispatch(setSelectedProduct(products));
 };
 
-export const postProductionAction = () => async (dispatch) => {
-  const responsePromise = postProducts();
+export const postProductionAction = (data) => async (dispatch) => {
+  const responsePromise = postProducts(data);
 
   toast.promise(responsePromise, { pending: "Please wait" });
   const { status, message } = await responsePromise;
   toast[status](message);
 
-  // status === "success" && dispatch(fetchProductionAction());
+  status === "success" && dispatch(fetchProductionAction());
+};
+
+export const updateProductionAction = (data, _id) => async (dispatch) => {
+  const responsePromise = updateProduct(data);
+
+  toast.promise(responsePromise, { pending: "Please wait" });
+  const { status, message } = await responsePromise;
+  toast[status](message);
+
+  status === "success" && dispatch(fetchSingleProductionAction(data._id));
 };
