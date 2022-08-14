@@ -7,6 +7,7 @@ const paymentMethodEP = rootUrl + "/paymentMethod";
 const adminEP = rootUrl + "/admin";
 const productEP = rootUrl + "/product";
 const jwtEP = adminEP + "/accessjwt";
+const ordersEP = rootUrl + "/orders";
 
 const apiProcessor = async ({ method, url, data, privateAPI, token }) => {
   try {
@@ -273,4 +274,14 @@ export const requestNewAccessJWT = async () => {
   const { accessJWT } = await apiProcessor(option);
   sessionStorage.setItem("accessJWT", accessJWT);
   return accessJWT;
+};
+
+// orders
+export const getOrders = async (_id) => {
+  const option = {
+    method: "get",
+    url: _id ? ordersEP + "/" + _id : ordersEP,
+    privateAPI: true,
+  };
+  return apiProcessor(option);
 };

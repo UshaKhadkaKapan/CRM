@@ -23,12 +23,14 @@ import paymentMethod from "./src/routers/paymentMethod.js";
 import adminRouter from "./src/routers/adminRouter.js";
 import { adminAuth } from "./src/middlewares/authMiddleware.js";
 import productRouter from "./src/routers/productRouter.js";
+import orderRouter from "./src/routers/OrderRouter.js";
 
 app.use("/api/v1/register-login", registerLoginRouter),
   app.use("/api/v1/category", adminAuth, categoriesRouter);
 app.use("/api/v1/paymentMethod", adminAuth, paymentMethod);
 app.use("/api/v1/admin", adminRouter);
 app.use("/api/v1/product", adminAuth, productRouter);
+app.use("/api/v1/orders", adminAuth, orderRouter);
 
 // server public folder as static folder
 

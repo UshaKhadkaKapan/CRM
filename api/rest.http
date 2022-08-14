@@ -187,5 +187,9 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IktoYWRrYXVzaGE4
 
 
 ###get all the product
-GETP http://localhost:8000/api/v1/product
+GET http://localhost:8000/api/v1/product
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IktoYWRrYXVzaGE4M0BnbWFpbC5jb20iLCJpYXQiOjE2NTk3NzU5NDUsImV4cCI6MTY1OTc3Njg0NX0.WU1DWpL6d27S4ULEQXAJO70AHOlzlaprWfTiVJugumk
+
+###
+GET http://localhost:8000/api/v1/orders/6
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6IktoYWRrYXVzaGE4M0BnbWFpbC5jb20iLCJpYXQiOjE2NjA0MzIzNDYsImV4cCI6MTY2MDQzMzI0Nn0.FFcgJ7Q95YDwVxeJpYVkUmr75Zp2Tuol66W6DOTaKCM
