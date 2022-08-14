@@ -8,6 +8,8 @@ const adminEP = rootUrl + "/admin";
 const productEP = rootUrl + "/product";
 const jwtEP = adminEP + "/accessjwt";
 const ordersEP = rootUrl + "/orders";
+const customerEP = rootUrl + "/customer";
+const reviewsEP = rootUrl + "/review";
 
 const apiProcessor = async ({ method, url, data, privateAPI, token }) => {
   try {
@@ -281,6 +283,24 @@ export const getOrders = async (_id) => {
   const option = {
     method: "get",
     url: _id ? ordersEP + "/" + _id : ordersEP,
+    privateAPI: true,
+  };
+  return apiProcessor(option);
+};
+
+export const getCustomersDetails = async (_id) => {
+  const option = {
+    method: "get",
+    url: _id ? customerEP + "/" + _id : customerEP,
+    privateAPI: true,
+  };
+  return apiProcessor(option);
+};
+
+export const getReviews = async (_id) => {
+  const option = {
+    method: "get",
+    url: _id ? reviewsEP + "/" + _id : reviewsEP,
     privateAPI: true,
   };
   return apiProcessor(option);

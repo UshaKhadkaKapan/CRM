@@ -77,6 +77,16 @@ export const Sildemenu = () => {
                 Admin Profile
               </Link>
             </ListGroup.Item>
+
+            <ListGroup.Item
+              onClick={() => dispatch(toggleShowSideMenu())}
+              className="fs-3"
+            >
+              <Link to="/review" className="nav-link">
+                Review
+              </Link>
+            </ListGroup.Item>
+
             <ListGroup.Item onClick={() => dispatch(adminLogout())}>
               <Link to="#" className="nav-link">
                 <i class="fa-solid fa-right-from-bracket"></i>

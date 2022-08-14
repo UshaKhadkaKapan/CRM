@@ -24,6 +24,8 @@ import adminRouter from "./src/routers/adminRouter.js";
 import { adminAuth } from "./src/middlewares/authMiddleware.js";
 import productRouter from "./src/routers/productRouter.js";
 import orderRouter from "./src/routers/OrderRouter.js";
+import customerRouter from "./src/routers/CustomerRouter.js";
+import reviewRouter from "./src/routers/reviewRouter.js";
 
 app.use("/api/v1/register-login", registerLoginRouter),
   app.use("/api/v1/category", adminAuth, categoriesRouter);
@@ -31,6 +33,8 @@ app.use("/api/v1/paymentMethod", adminAuth, paymentMethod);
 app.use("/api/v1/admin", adminRouter);
 app.use("/api/v1/product", adminAuth, productRouter);
 app.use("/api/v1/orders", adminAuth, orderRouter);
+app.use("/api/v1/customer", adminAuth, customerRouter);
+app.use("/api/v1/review", adminAuth, reviewRouter);
 
 // server public folder as static folder
 
