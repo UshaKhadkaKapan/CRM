@@ -16,6 +16,9 @@ app.use(express.json());
 import { mongoConnect } from "./src/dbconfig/dbconfig.js";
 mongoConnect();
 
+import userRouter from "./src/routers/userRouter.js";
+
+app.use("/api/v2/user-register", userRouter);
 app.get("/", (req, res) => {
   res.json({
     message: "you reach a e-commerce api",
