@@ -1,8 +1,9 @@
 import express from "express";
+import { ClientRegistrationValidation } from "../middlewares/validationMiddleware.js";
 import { createNewUser } from "../models/clientUser/clientUserModel.js";
 const router = express.Router();
 
-router.post("/", async (req, res, next) => {
+router.post("/", ClientRegistrationValidation, async (req, res, next) => {
   try {
     const result = await createNewUser(req.body);
     console.log(result);
