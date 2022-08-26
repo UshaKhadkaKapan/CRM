@@ -1,13 +1,71 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: bold;
+  color: rgb(243, 179, 19);
+}
+
+.btn1 {
+  box-shadow: none !important;
+  background-color: white;
+  color: orangered;
+  border: 1px solid orangered !important;
+  padding: 5px 15px !important;
+  outline: none !important;
+}
+button {
+  padding: 3px 15px !important;
+}
+
+.btn1 :focus {
+  border: none;
+}
+.login {
+  background-color: black;
+  padding-top: 50px;
+  min-height: 100vh;
+}
+
+.login label,
+.login h1 {
+  color: rgba(255, 255, 255, 0.696) !important;
+}
+
+.login-form {
+  background-color: #1f1f1f;
+}
+
+.login-form input {
+  background-color: #333333;
+  border: none;
+  color: white;
+  opacity: 0.5;
+}
+.login-logo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 60%;
+  bottom: 50%;
+  transform: translateY(-50%, -50%);
+  font-size: 45px;
+  opacity: 0.5 !important;
+}
+
+.login a {
+  color: white !important;
+  opacity: 0.5;
 }
