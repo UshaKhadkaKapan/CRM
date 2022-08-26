@@ -27,6 +27,13 @@ const Register = () => {
             <button className="btn1 mt-2 mb-3">Login</button>
             <br />
             <Link to="/register">Click here to Register</Link>
+            <br />
+            <div className="text-right mt-3">
+              <h5 style={{ color: "white" }}>
+                {" "}
+                Forget Password 😢: <a href="/password-reset">Reset Password</a>
+              </h5>
+            </div>
           </Form>
         </Col>
       </Row>
