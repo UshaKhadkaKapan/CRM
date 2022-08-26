@@ -8,7 +8,7 @@ const Register = () => {
       <Row gutter={16} className="d-flex align-items-center">
         <Col lg={24} className="text-left p-5 ">
           <Form layout="vertical" className="login-form p-5">
-            <h1>Register</h1>
+            <h1>Login</h1>
             <hr />
 
             <Form.Item type="email" name="email" label="Email" required>
