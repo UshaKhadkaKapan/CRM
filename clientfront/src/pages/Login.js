@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Row, Col, Input, Form } from "antd";
+import MainLayout from "../MainLayout/MainLayout";
 
 const Register = () => {
   return (

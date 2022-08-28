@@ -7,12 +7,12 @@ const UserSchema = new mongoose.Schema(
       required: true,
       default: "inactive",
     },
-    role: {
+    fName: {
       type: String,
       required: true,
-      default: "Admin",
+      maxLength: 50,
     },
-    fName: {
+    lName: {
       type: String,
       required: true,
       maxLength: 50,
@@ -36,21 +36,20 @@ const UserSchema = new mongoose.Schema(
     },
     dob: {
       type: Date,
-      required: true,
       default: null,
     },
-    Address: {
+    address: {
       type: String,
       maxLength: 50,
     },
-    verificationCode: {
-      type: String,
-      maxLength: 50,
-    },
-    refreshJWT: {
-      type: String,
-      default: "",
-    },
+    // verificationCode: {
+    //   type: String,
+    //   maxLength: 50,
+    // },
+    // refreshJWT: {
+    //   type: String,
+    //   default: "",
+    // },
   },
   {
     timestamps: true,

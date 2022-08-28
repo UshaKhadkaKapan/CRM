@@ -1,31 +1,100 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Row, Col, Input, Form } from "antd";
+import { toast } from "react-toastify";
+import { postClientDetails } from "../helper/axios-helper";
 
 const Register = () => {
+  // const handleOnChange = (e) => {
+  //   const { name, value } = e.target;
+  //   setForm({ ...form, [name]: value });
+  //   console.log(form);
+  // };
+
+  // const handleOnSubmit = async (e) => {
+  //   e.preventDefault();
+
+  //   // if (form.password !== form.confirmPassword) {
+  //   //   return toast.error("Password and  confirm password do not match");
+  //   // }
+
+  //   const { confirmPassword, ...rest } = form;
+  //   console.log(rest);
+  //   const { status, message } = await postClientDetails(rest);
+
+  //   toast[status](message);
+  // };
+
+  const onFinish = async (value) => {
+    const { confirmPassword, ...rest } = value;
+
+    const { status, message } = await postClientDetails(rest);
+    toast[status](message);
+  };
   return (
     <div className="login">
       <Row gutter={16} className="d-flex align-items-center">
         <Col lg={24} className="text-left p-5 ">
-          <Form layout="vertical" className="login-form p-5">
+          <Form
+            layout="vertical"
+            className="login-form p-5"
+            onFinish={onFinish}
+          >
             <h1>Register</h1>
             <hr />
-            <Form.Item name="fName" label="fName" type="text" required>
+            <Form.Item
+              name="fName"
+              label="fName"
+              type="text"
+              required
+
+              // onChange={handleOnChange}
+            >
               <Input />
             </Form.Item>
-            <Form.Item name="lName" label="lName" type="text" required>
+            <Form.Item
+              name="lName"
+              label="lName"
+              type="text"
+              required
+              // onChange={handleOnChange}
+            >
               <Input />
             </Form.Item>
-            <Form.Item type="email" name="email" label="Email" required>
+            <Form.Item
+              type="email"
+              name="email"
+              label="Email"
+              required
+              // onChange={handleOnChange}
+            >
               <Input />
             </Form.Item>
-            <Form.Item name="phone" label="Phone" type="text" required>
+            <Form.Item
+              name="phone"
+              label="Phone"
+              type="text"
+              required
+              // onChange={handleOnChange}
+            >
               <Input />
             </Form.Item>
-            <Form.Item type="date" name="dob" label="DOB" required>
+            <Form.Item
+              type="date"
+              name="dob"
+              label="DOB"
+
+              // onChange={handleOnChange}
+            >
               <Input />
             </Form.Item>
-            <Form.Item name="address" label="Address" type="text" required>
+            <Form.Item
+              name="address"
+              label="Address"
+              type="text"
+              required
+              // onChange={handleOnChange}
+            >
               <Input />
             </Form.Item>
             <Form.Item
@@ -33,6 +102,7 @@ const Register = () => {
               name="password"
               label="Password"
               required
+              // onChange={handleOnChange}
             >
               <Input />
             </Form.Item>
@@ -41,11 +111,14 @@ const Register = () => {
               name="confirmPassword"
               label="Confirm Password"
               required
+              // onChange={handleOnChange}
             >
               <Input />
             </Form.Item>
 
-            <button className="btn1 mt-2 mb-3">Register</button>
+            <button className="btn1 mt-2 mb-3" type="submit">
+              Register
+            </button>
             <br />
             <Link to="/login">Click here to login</Link>
           </Form>
