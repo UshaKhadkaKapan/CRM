@@ -42,10 +42,10 @@ const UserSchema = new mongoose.Schema(
       type: String,
       maxLength: 50,
     },
-    // verificationCode: {
-    //   type: String,
-    //   maxLength: 50,
-    // },
+    verificationCode: {
+      type: String,
+      maxLength: 50,
+    },
     // refreshJWT: {
     //   type: String,
     //   default: "",

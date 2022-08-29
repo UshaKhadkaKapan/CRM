@@ -10,6 +10,7 @@ Server only
     - response 401 on authenticated
 
 Client side only
+step 2
 -send login form to the Server
 -if receive token:
   -store accessJWT in the sessionStorage

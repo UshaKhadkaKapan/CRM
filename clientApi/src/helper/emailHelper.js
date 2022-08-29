@@ -26,19 +26,19 @@ const sendMail = async (emailInfo) => {
   // Preview URL: https://ethereal.email/message/WaQKMgKddxQDoou...
 };
 
-export const sendAdminUserVerificationMail = (userObj) => {
-  const link = `${process.env.DOMAIN}/admin-verification?e=${userObj.email}&c=${userObj.verificationCode}`;
+export const sendAdminClientVerificationMail = (clientObj) => {
+  const link = `${process.env.DOMAIN}/admin-verification?e=${clientObj.email}&c=${clientObj.verificationCode}`;
   // "http://localhost:3000/admin-verification?email=" +
-  //   userObj.email +
+  //   clientObj.email +
   //   "&c=" +
   //   userObj.verificationCode;
   const emailInfo = {
     from: '"ABC store" ' + process.env.MAIL_USER,
-    to: userObj.email, // list of receivers
+    to: clientObj.email, // list of receivers
     subject: "Account Verification required", // Subject line
-    text: `Hi ${userObj.fName} and ${link}`, // plain text body
+    text: `Hi ${clientObj.fName} and ${link}`, // plain text body
     html: `
-      <p>Hello ${userObj.fName}</p>
+      <p>Hello ${clientObj.fName}</p>
       <br/>
       <br/>
       <p>Please follow the link below to verify and activate your admin account<p/>
