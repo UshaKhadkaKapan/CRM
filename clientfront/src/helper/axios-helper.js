@@ -23,3 +23,7 @@ const apiProcessor = async (method, url, data) => {
 export const postClientDetails = (data) => {
   return apiProcessor("post", registerEP, data);
 };
+
+export const emailVerificationClientUser = (data) => {
+  return apiProcessor("patch", registerEP, data);
+};

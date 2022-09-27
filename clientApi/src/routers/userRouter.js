@@ -19,14 +19,14 @@ router.post("/", ClientRegistrationValidation, async (req, res, next) => {
     if (result?._id) {
       sendAdminClientVerificationMail(result);
       console.log(result);
-      res.json({
+      return res.json({
         status: "success",
-        message: "todo get method",
+        message: "We have sent you verification",
       });
     }
     res.json({
       status: "success",
-      message: "todo get method",
+      message: "We have sent you an email,please follow the step",
     });
   } catch (error) {
     if (error.message.includes("E11000 duplicate key error collection")) {
