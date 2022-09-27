@@ -5,26 +5,6 @@ import { toast } from "react-toastify";
 import { postClientDetails } from "../helper/axios-helper";
 
 const Register = () => {
-  // const handleOnChange = (e) => {
-  //   const { name, value } = e.target;
-  //   setForm({ ...form, [name]: value });
-  //   console.log(form);
-  // };
-
-  // const handleOnSubmit = async (e) => {
-  //   e.preventDefault();
-
-  //   // if (form.password !== form.confirmPassword) {
-  //   //   return toast.error("Password and  confirm password do not match");
-  //   // }
-
-  //   const { confirmPassword, ...rest } = form;
-  //   console.log(rest);
-  //   const { status, message } = await postClientDetails(rest);
-
-  //   toast[status](message);
-  // };
-
   const onFinish = async (value) => {
     const { confirmPassword, ...rest } = value;
 

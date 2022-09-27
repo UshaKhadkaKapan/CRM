@@ -142,22 +142,7 @@ const ResetPassword = () => {
               type="submit"
             />
 
-            {/* <CustomInput
-              type="submit"
-              className="bth btn-danger"
-              value="update password"
-            /> */}
-
-            <div
-            //   className="text-right mt-5"
-            //   onClick={() => setShowForm("otp")}
-            //   style={{ cursor: "pointer" }}
-            >
-              {" "}
-              Request OTP again
-            </div>
-
-            {/* <CustomInput type="submit" className="btn btn-outline-primary" /> */}
+            <div style={{ cursor: "pointer" }}> Request OTP again</div>
           </Form>
         )}
 
