@@ -27,7 +27,69 @@ export const sendAdminClientVerificationMail = (userObj) => {
     <br/>
     <br/>
 
-    <p>xyz company</p>
+    <p>XYZ company</p>
+    `, // html body
+  };
+
+  sgMail.send(emailInfo).then(
+    () => {},
+    (error) => {
+      console.error(error);
+
+      if (error.response) {
+        console.error(error.response.body);
+      }
+    }
+  );
+};
+
+//////for resetOPT for client
+export const emailPasswordClientResetOPT = (obj) => {
+  const emailInfo = {
+    from: process.env.MAIL_FROM,
+    to: obj.email, // list of receivers
+    subject: "OTP for password Reset", // Subject line
+    text: `Hi ${obj.otp} Please follow the following OTP to reset the password `, // plain text body
+    html: `
+    <p>Hello ${obj.fName}</p>
+    <p>Hi ${obj.otp} Please follow the following OTP to reset the password <p/>
+    <br/>
+    <br/>
+    <p>Please follow the following OTP to reset the password<p/>
+    <br/>
+    <br/>
+    <p>XYZ company</p>
+    `, // html body
+  };
+
+  sgMail.send(emailInfo).then(
+    () => {},
+    (error) => {
+      console.error(error);
+
+      if (error.response) {
+        console.error(error.response.body);
+      }
+    }
+  );
+};
+
+// profile update verification email for client
+export const profileUpdatedVerificationMailForClient = (obj) => {
+  console.log(obj);
+  const emailInfo = {
+    from: process.env.MAIL_FROM,
+    to: obj.email, // list of receivers
+    subject: "Your profile has been updated", // Subject line
+    text: `Hi ${obj.fName} we have just notice that you profile has been updated. If it isnt you, please contact us immidiately`, // plain text body
+    html: `
+    <p>Hello ${obj.fName}</p>
+    <br/>
+    <br/>
+    <p>we have just notice that you profile has been updated. If it isnt you, please contact us immidiately<p/>
+    <br/>
+    <br/>
+    <p>XYZ company</p>
     `, // html body
   };
 

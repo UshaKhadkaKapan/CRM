@@ -2,8 +2,8 @@ import axios from "axios";
 
 const rootUrl = "http://localhost:5000/api/v2";
 const registerEP = rootUrl + "/user-register";
-const OTPRequestEP = rootUrl + "/otp-request";
-const requestPasswordEP = rootUrl + "/password";
+const OTPRequestEP = registerEP + "/otp-request";
+const requestPasswordEP = registerEP + "/password";
 
 const apiProcessor = async (method, url, data) => {
   try {
