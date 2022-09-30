@@ -2,7 +2,7 @@ import Joi from "joi";
 
 export const FNAME = Joi.string().min(3).max(50).required();
 export const LNAME = Joi.string().min(3).max(50).required();
-export const DOB = Joi.date().allow(null, "").required();
+export const DOB = Joi.date().allow(null, "");
 export const PHONE = Joi.string().min(3).max(50).required();
 export const EMAIL = Joi.string()
   .email({ minDomainSegments: 2 })

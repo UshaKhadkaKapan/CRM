@@ -4,6 +4,7 @@ import sgMail from "@sendgrid/mail";
 sgMail.setApiKey(process.env.SENDGRID);
 
 export const sendAdminClientVerificationMail = (userObj) => {
+  console.log(userObj);
   const link = `${process.env.DOMAIN}/client-verification?e=${userObj.email}&c=${userObj.verificationCode}`;
   // "http://localhost:3000/admin-verification?email=" +
   //   userObj.email +

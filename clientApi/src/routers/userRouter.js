@@ -15,10 +15,10 @@ router.post("/", ClientRegistrationValidation, async (req, res, next) => {
     const verification = uuidv4();
     req.body.verificationCode = verification;
     const result = await createNewUser(req.body);
-
+    console.log(result);
     if (result?._id) {
       sendAdminClientVerificationMail(result);
-      console.log(result);
+
       return res.json({
         status: "success",
         message: "We have sent you verification",
