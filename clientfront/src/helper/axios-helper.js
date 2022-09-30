@@ -2,6 +2,8 @@ import axios from "axios";
 
 const rootUrl = "http://localhost:5000/api/v2";
 const registerEP = rootUrl + "/user-register";
+const OTPRequestEP = rootUrl + "/otp-request";
+const requestPasswordEP = rootUrl + "/password";
 
 const apiProcessor = async (method, url, data) => {
   try {
@@ -26,4 +28,12 @@ export const postClientDetails = (data) => {
 
 export const emailVerificationClientUser = (data) => {
   return apiProcessor("patch", registerEP, data);
+};
+
+export const requestOTP = (data) => {
+  return apiProcessor("post", OTPRequestEP, data);
+};
+
+export const resetPassword = (data) => {
+  return apiProcessor("patch", requestPasswordEP, data);
 };

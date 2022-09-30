@@ -43,3 +43,13 @@ export const ClientloginValidation = (req, res, next) => {
 
   joiValidator(schema, req, res, next);
 };
+
+export const resetPasswordValidation = (req, res, next) => {
+  const schema = Joi.object({
+    email: EMAIL,
+    password: PASSWORD,
+    otp: OTP.required(),
+  });
+
+  joiValidator(schema, req, res, next);
+};
