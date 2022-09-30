@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { Row, Col, Input, Form } from "antd";
 import { toast } from "react-toastify";
@@ -100,7 +100,7 @@ const Register = () => {
               Register
             </button>
             <br />
-            <Link to="/login">Click here to login</Link>
+            <Link to="/">Click here to login</Link>
           </Form>
         </Col>
       </Row>

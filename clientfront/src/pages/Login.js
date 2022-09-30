@@ -1,9 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Row, Col, Input, Form } from "antd";
-import MainLayout from "../MainLayout/MainLayout";
 
-const Register = () => {
+const Login = () => {
   return (
     <div className="login">
       <Row gutter={16} className="d-flex align-items-center">
@@ -42,4 +41,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Login;
