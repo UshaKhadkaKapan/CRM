@@ -1,6 +1,5 @@
 import jwt from "jsonwebtoken";
 import { updateClient } from "../models/clientUser/clientUserModel.js";
-
 import { insertSession } from "../models/userSession/SessionModal.js";
 
 // @payload must have an payload
