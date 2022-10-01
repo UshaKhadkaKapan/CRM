@@ -92,9 +92,12 @@ route.get("/:_id?", async (req, res, next) => {
 
 route.delete("/:_id", async (req, res, next) => {
   try {
+    console.log(req.body);
+    console.log(req.params);
     const { _id } = req.params;
-    const products = await deleteProduct({ _id });
-    product?._id
+
+    const products = await deleteProduct(_id);
+    products?._id
       ? res.json({
           status: "success",
           message: "Product has been delete successfully.",
@@ -113,12 +116,13 @@ route.delete("/:_id", async (req, res, next) => {
   }
 });
 
-route.put(
+route.patch(
   "/",
   upload.array("newImages", 5),
   updateProductValidation,
   async (req, res, next) => {
     try {
+      console.log(req.body);
       const { _id, ...rest } = req.body;
       const newImages = req.files;
 

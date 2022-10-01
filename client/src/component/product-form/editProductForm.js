@@ -44,12 +44,13 @@ const EditProductForm = () => {
   const handleOnDelete = async () => {
     if (window.confirm("Are you sure you want to delete")) {
       const { _id } = selectedProduct;
+      console.log(_id);
       const responsePromise = deleteProduct(_id);
       toast.promise(responsePromise, { pending: "Deleting please wait..." });
       const { status, message } = await responsePromise;
       toast[status](message);
 
-      status === "success" && navigate("/product");
+      status === "success" && navigate("/products");
     }
   };
 
@@ -163,15 +164,16 @@ const EditProductForm = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    const { createdAt, updatedAt, __v, slug, rating, ...rest } = form;
+    const { createdAt, updatedAt, __v, slug, ratings, ...rest } = form;
+    console.log(rest);
 
     const formData = new FormData();
 
-    for (const key in form) {
+    for (const key in rest) {
       formData.append(key, form[key]);
     }
     newImages.length &&
-      [...newImages].map((img) => formData.append("images".img));
+      [...newImages].map((img) => formData.append("images", img));
 
     dispatch(updateProductionAction(formData, form._id));
   };

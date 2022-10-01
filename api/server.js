@@ -31,7 +31,7 @@ app.use("/api/v1/register-login", registerLoginRouter),
   app.use("/api/v1/category", adminAuth, categoriesRouter);
 app.use("/api/v1/paymentMethod", adminAuth, paymentMethod);
 app.use("/api/v1/admin", adminRouter);
-app.use("/api/v1/product", adminAuth, productRouter);
+app.use("/api/v1/product", productRouter);
 app.use("/api/v1/orders", adminAuth, orderRouter);
 app.use("/api/v1/customer", adminAuth, customerRouter);
 app.use("/api/v1/review", adminAuth, reviewRouter);

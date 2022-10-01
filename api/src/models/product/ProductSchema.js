@@ -23,7 +23,6 @@ const productSchema = new mongoose.Schema(
     },
     slug: {
       type: String,
-      required: true,
       unique: true,
       index: 1,
       trim: true,

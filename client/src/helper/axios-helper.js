@@ -56,6 +56,7 @@ const apiProcessor = async ({ method, url, data, privateAPI, token }) => {
 };
 
 export const postAdminUser = (data) => {
+  console.log(data);
   const option = {
     method: "post",
     url: loginRegisterEP,
@@ -257,9 +258,10 @@ export const deleteProduct = (_id) => {
 
 export const updateProduct = (data) => {
   const option = {
-    method: "put",
+    method: "patch",
     url: productEP,
     privateAPI: true,
+    data,
   };
 
   return apiProcessor(option);

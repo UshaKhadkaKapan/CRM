@@ -30,6 +30,7 @@ export const postProductionAction = (data) => async (dispatch) => {
 };
 
 export const updateProductionAction = (data, _id) => async (dispatch) => {
+  console.log(data, _id);
   const responsePromise = updateProduct(data);
 
   toast.promise(responsePromise, { pending: "Please wait" });
