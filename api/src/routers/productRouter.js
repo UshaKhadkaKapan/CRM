@@ -150,4 +150,35 @@ route.patch(
     } catch (error) {}
   }
 );
+
+// router.put(
+//   "/",
+//   upload.array("newImages", 5),
+//   updateProducrtValidation,
+//   async (req, res, next) => {
+//     try {
+//       const { _id, ...rest } = req.body;
+//       const newImages = req.files;
+
+//       const newImagePaths = newImages.map((img) => img.path.substr(7));
+//       const oldImgLinks = rest.images.split(",");
+//       rest.images = [...newImagePaths, ...oldImgLinks];
+
+//       const product = await updateProductById(_id, rest);
+
+//     product?._id
+//       ? res.json({
+//           status: "success",
+//           message: "The product has been updated",
+//         })
+//       : res.json({
+//           status: "error",
+//           message: "Unable to update the prodcut and try agian later",
+//         });
+//   } catch (error) {
+//     next(error);
+//   }
+// }
+// );
+
 export default route;

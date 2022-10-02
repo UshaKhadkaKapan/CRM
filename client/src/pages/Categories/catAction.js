@@ -16,9 +16,9 @@ export const getCategoryAction = (_id) => async (dispatch) => {
 export const postCategoryAction = (obj) => async (dispatch) => {
   const responsePromise = postCategory(obj);
   toast.promise(responsePromise, { pending: "Please wait..." });
-  const { status, result } = await responsePromise;
+  const { status, message } = await responsePromise;
 
-  toast[status](result);
+  toast[status](message);
 
   status === "success" && dispatch(getCategoryAction());
 };
@@ -26,9 +26,8 @@ export const postCategoryAction = (obj) => async (dispatch) => {
 export const deleteCategoryAction = (obj) => async (dispatch) => {
   const responsePromise = deleteCategory(obj);
   toast.promise(responsePromise, { pending: "Please wait..." });
-  const { status, result } = await responsePromise;
-
-  toast[status](result);
+  const { status, message } = await responsePromise;
+  toast[status](message);
 
   status === "success" && dispatch(getCategoryAction());
 };
